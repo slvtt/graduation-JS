@@ -9,11 +9,11 @@ function Main () {
             <Grid container spacing={10}>
 
                 <Grid item xs={6}>
-                    <div>asdfasdf</div>
+                    <div></div>
                 </Grid>
 
                 <Grid item xs={6}>
-                    <div className="bg-black">asdfasdf</div>
+                    <div className="bg-black"></div>
                 </Grid>
 
             </Grid>
