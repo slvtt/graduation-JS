@@ -11,7 +11,7 @@ const filename = ext => isDev ?
 
 let conf = {
     entry: {
-        main: ['@babel/polyfill', './index.js']
+        main: ['webpack-dev-server/client?http://localhost:3000/','@babel/polyfill', './index.js']
     },
     output: {
         filename: `./js/${filename('js')}`,
@@ -43,7 +43,7 @@ let conf = {
                         }
                     },
                     'css-loader',
-                    'sass-loader'
+                    'sass-loader',
                 ]
             },
             {
@@ -68,10 +68,13 @@ let conf = {
                 ],
             },
             {
-                test: /\.(png|jpe?g|gif)$/i,
+                test: /\.(png|jpe?g|gif|ico|svg)$/i,
                 use: [
                     {
                         loader: 'file-loader',
+                        options:{
+                            name:`./img/${filename('[ext]')}`
+                        },
                     },
                 ],
             },
@@ -82,7 +85,7 @@ let conf = {
         ]
     },
     devServer: {
-        contentBase: './build',
+        contentBase: './dist',
         hot: true,
         port: 3000,
         open: true,

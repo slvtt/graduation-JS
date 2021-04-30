@@ -6,3 +6,27 @@ body{
     background-color: aqua;
 }
 
+.border-container{
+    border: 1px solid black;
+}
+.header-img-block{
+    display: flex;
+    padding: 16px;
+    align-items: center;
+    border:1px solid #efefef;
+}
+
+.main-img img{
+    width: 100%;
+}
+
+.main-img_like{
+    border:1px solid #efefef;
+    padding: 15px;
+}
+
+.btn {
+    padding: 10px;
+    margin-right: 15px;
+}
+
