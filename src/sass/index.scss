@@ -24,9 +24,26 @@ body{
     border:1px solid #efefef;
     padding: 15px;
 }
-
 .btn {
     padding: 10px;
     margin-right: 15px;
+    border: none;
+    background: #fff;
+    cursor: pointer;
 }
+.like-btn{
+    width: 35px;
+    height: 30px;
+    background-image: url(../public/img/love_btn.png) ;
+    background-repeat: no-repeat;
+}
+
+.magnifier{
+    background-image:url(../public/img/magnifier.png);
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 28px;
+}
+
+
 
