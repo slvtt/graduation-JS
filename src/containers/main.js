@@ -3,7 +3,8 @@ import React from 'react';
 import { Container,Avatar ,Grid,Box } from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 import classNames from 'classnames';
-import testImg from '../public/img/test.jpg'
+import testImg from '../public/img/test.jpg';
+import LikeBtnGroup from '../components/likeGroup'
 function Main () {
     const classes = useStyles();
     return(
@@ -25,10 +26,7 @@ function Main () {
                         </div>
 
                         <div className="main-img_like">
-                            <section className="like-button-group">
-                                <button className="like-btn btn"></button>
-                                <button className="magnifier btn"></button>
-                            </section>
+                            <LikeBtnGroup />
                         </div>
                     </div>
                 </Grid>
@@ -46,10 +44,7 @@ function Main () {
                         </div>
 
                         <div className="main-img_like">
-                            <section className="like-button-group">
-                                <button className="like-btn btn"></button>
-                                <button className="magnifier btn"></button>
-                            </section>
+                            <LikeBtnGroup />
                         </div>
                     </div>
                 </Grid>
