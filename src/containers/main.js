@@ -16,16 +16,10 @@ const unsplash = createApi({
 const controller = new AbortController();
 const signal = controller.signal;
 
-
-unsplash.photos.get({ photoId: 'kLfkVa_4aXM' }).then(result => {
-    switch (result.type) {
-        case 'error':
-        console.log('error occurred: ', result.errors[0]);
-        case 'success':
-        const photo = result.response;
-        console.log(photo.links.download);
-    }
+const photo = unsplash.photos.getRandom({ count:1 }).then(result => {
+    const photo = result.response.json();
 });
+
 
 function Main () {
     const classes = useStyles();
@@ -44,7 +38,7 @@ function Main () {
                             </Box>
                         </div>
                         <div className="main-img">
-                            <img src={testImg}/>
+                            <img src={photo}/>
                         </div>
 
                         <div className="main-img_like">
