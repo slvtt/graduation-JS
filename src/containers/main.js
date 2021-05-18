@@ -4,7 +4,20 @@ import { Container,Avatar ,Grid,Box } from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 import classNames from 'classnames';
 import testImg from '../public/img/test.jpg';
-import LikeBtnGroup from '../components/likeGroup'
+import LikeBtnGroup from '../components/likeGroup';
+
+import nodeFetch from 'node-fetch';
+import { createApi } from 'unsplash-js';
+
+const unsplash = createApi({
+    accessKey:'wdNn-PaVrpGbxNb07igZx_c2D-f8ux2_1LTZb-uyA6U',
+    fetch:nodeFetch
+})
+unsplash.photos.get(
+    { photoId: '123' },
+  // `fetch` options to be sent only with _this_ request
+    { headers: { 'X-Custom-Header-2': 'bar' } },
+);
 function Main () {
     const classes = useStyles();
     return(
