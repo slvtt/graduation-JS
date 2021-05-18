@@ -13,11 +13,20 @@ const unsplash = createApi({
     accessKey:'wdNn-PaVrpGbxNb07igZx_c2D-f8ux2_1LTZb-uyA6U',
     fetch:nodeFetch
 })
-unsplash.photos.get(
-    { photoId: '123' },
-  // `fetch` options to be sent only with _this_ request
-    { headers: { 'X-Custom-Header-2': 'bar' } },
-);
+const controller = new AbortController();
+const signal = controller.signal;
+
+
+unsplash.photos.get({ photoId: 'kLfkVa_4aXM' }).then(result => {
+    switch (result.type) {
+        case 'error':
+        console.log('error occurred: ', result.errors[0]);
+        case 'success':
+        const photo = result.response;
+        console.log(photo.links.download);
+    }
+});
+
 function Main () {
     const classes = useStyles();
     return(
