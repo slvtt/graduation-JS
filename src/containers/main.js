@@ -13,20 +13,37 @@ const unsplash = createApi({
     accessKey:'wdNn-PaVrpGbxNb07igZx_c2D-f8ux2_1LTZb-uyA6U',
     fetch:nodeFetch
 })
-const controller = new AbortController();
-const signal = controller.signal;
 
-const photo = unsplash.photos.getRandom({ count:1 }).then(result => {
-    const photo = result.response.json();
-});
+const photo = unsplash.photos.getRandom({count:10}).then(result =>{
+    
+    const responcePhotos = result.response
+    console.log(responcePhotos)
 
+    let arrUrls=responcePhotos.map(item => item.urls.regular)
 
+    console.log(arrUrls)
+
+    localStorage.setItem('photos',JSON.stringify(arrUrls))
+
+})
+
+const array = JSON.parse(window.localStorage.getItem('photos'))
+
+console.log(array)
+
+// array.forEach((item,index) =>{
+//         const photoIndex = document.querySelector(".main-img");
+//         photoIndex.innerHTML =`
+//             <img src =${item} />
+//         `
+// })
 function Main () {
     const classes = useStyles();
+
+    
     return(
         <main>
         <Container style={{marginTop:'40px'}} >
-
             <Grid container spacing={10}>
 
                 <Grid item xs={6}>
@@ -38,7 +55,7 @@ function Main () {
                             </Box>
                         </div>
                         <div className="main-img">
-                            <img src={photo}/>
+                            <img src={array[1]}/>
                         </div>
 
                         <div className="main-img_like">
@@ -56,15 +73,17 @@ function Main () {
                             </Box>
                         </div>
                         <div className="main-img">
-                            <img src={testImg}/>
+                            <img src={
+                                array[0]
+                            } />
                         </div>
-
                         <div className="main-img_like">
                             <LikeBtnGroup />
                         </div>
                     </div>
                 </Grid>
 
+                
             </Grid>
 
         </Container>
