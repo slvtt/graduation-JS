@@ -1,4 +1,5 @@
 const initialState = {
+    me:'first user',
     arr:[]
 }
 export const fooReducer = (state = initialState,action)=>{
