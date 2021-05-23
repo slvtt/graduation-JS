@@ -4,7 +4,7 @@ import { Container,Grid } from '@material-ui/core';
 import nodeFetch from 'node-fetch';
 import { createApi } from 'unsplash-js';
 
-import MainPublication from '../components/main-publication';
+import MainPublication from '../components/main-publication/main-publication';
 
 const unsplash = createApi({
     accessKey:'wdNn-PaVrpGbxNb07igZx_c2D-f8ux2_1LTZb-uyA6U',
@@ -36,7 +36,7 @@ function Main () {
         
     },[])
 
-    console.log(photos)
+    // console.log(photos)
     return(
         <main>
         <Container style={{marginTop:'40px'}} >

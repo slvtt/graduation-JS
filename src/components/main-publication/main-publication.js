@@ -2,14 +2,14 @@ import React from 'react';
 import {Avatar ,Grid,Box } from '@material-ui/core';
 import classNames from 'classnames';
 import {makeStyles} from '@material-ui/core/styles';
-import LikeBtnGroup from '../components/likeGroup';
+import LikeBtnGroup from '../likeGroup';
 
 const MainPublication = ({imgSrc}) =>{
 
     const classes = useStyles();
 
-    return(
-        <Grid item xs={6}>
+    return imgSrc.map((item,index) =>(
+            <Grid style={{ height: 'auto !important' }} item xs={6} >
                     <div>
                         <div className="header-img-block">
                             <Avatar className={classes.purpleAvatar}>N</Avatar>
@@ -18,7 +18,7 @@ const MainPublication = ({imgSrc}) =>{
                             </Box>
                         </div>
                         <div className="main-img">
-                            <img src={imgSrc[0]}/> 
+                            <img src={item}/> 
                         </div>
 
                         <div className="main-img_like">
@@ -26,7 +26,8 @@ const MainPublication = ({imgSrc}) =>{
                         </div>
                     </div>
                 </Grid>
-    )
+    ))
+        
 }
 
 
