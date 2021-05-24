@@ -15,14 +15,16 @@ const photo = unsplash.photos.getRandom({count:10}).then(result =>{
     const responcePhotos = result.response
     // console.log(responcePhotos)
     let arrUrls=responcePhotos.map(item => item.urls.regular)
-    // console.log(arrUrls)
+
+    let users = responcePhotos.map(item => item.user.links.self)
+    console.log(users)
     localStorage.setItem('photos',JSON.stringify(arrUrls))
 
 })
 
 const array = JSON.parse(window.localStorage.getItem('photos'))
 
-// console.log(array)
+console.log(array)
 
 function Main () {
     const [photos,setPhotos] = useState([]);

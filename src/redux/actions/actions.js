@@ -1,6 +1,6 @@
-export const foo = (props) => {
+export const likeAction = (publication) =>{
     return{
-        type:'foo',
-        payload:props
+        type:'isliked',
+        payload:publication
     }
 }

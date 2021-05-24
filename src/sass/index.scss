@@ -38,6 +38,11 @@ body{
     background-repeat: no-repeat;
 }
 
+.like-btn.active {
+    background-image: url(../public/img/love_btn_active.png);
+    transition: all 0.3;
+}
+
 .magnifier{
     background-image:url(../public/img/magnifier.png);
     background-repeat: no-repeat;
