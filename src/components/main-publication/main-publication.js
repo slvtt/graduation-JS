@@ -17,8 +17,13 @@ const unsplash = createApi({
     fetch:nodeFetch
 });
 
-const code = location.search.split('code=')[1];
+const code = 'rQ2NgzQiAydPPy0xbNJegDCh4VhHF9wbEefYbHeNxlY';
 console.log(code)
+
+unsplash.get({
+    redirect_uri:"urn:ietf:wg:oauth:2.0:oob",
+    scope:public
+})
 
 if (code) {
         unsplash.auth.userAuthentication(code)
