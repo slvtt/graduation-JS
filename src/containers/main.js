@@ -4,12 +4,17 @@ import { Container,Grid } from '@material-ui/core';
 import nodeFetch from 'node-fetch';
 import { createApi } from 'unsplash-js';
 
-import MainPublication from '../components/main-publication/main-publication';
 
+import MainPublication from '../components/main-publication/main-publication';
 const unsplash = createApi({
     accessKey:'wdNn-PaVrpGbxNb07igZx_c2D-f8ux2_1LTZb-uyA6U',
+
+    secret:"vlJy_e3ElNhZFQntKWkm653HgKv0JpU1dj1Ln7NOB64",
+
+    callbackUrl: "urn:ietf:wg:oauth:2.0:oob",
+    
     fetch:nodeFetch
-})
+});
 
 const photo = unsplash.photos.getRandom({count:10}).then(result =>{
     const responcePhotos = result.response
@@ -17,14 +22,14 @@ const photo = unsplash.photos.getRandom({count:10}).then(result =>{
     let arrUrls=responcePhotos.map(item => item.urls.regular)
 
     let users = responcePhotos.map(item => item.user.links.self)
-    console.log(users)
+    // console.log(users)
     localStorage.setItem('photos',JSON.stringify(arrUrls))
 
 })
 
 const array = JSON.parse(window.localStorage.getItem('photos'))
 
-console.log(array)
+// console.log(array)
 
 function Main () {
     const [photos,setPhotos] = useState([]);
