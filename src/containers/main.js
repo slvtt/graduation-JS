@@ -15,6 +15,19 @@ const unsplash = createApi({
     
     fetch:nodeFetch
 });
+const code = location.search.split('code=')[1];
+console.log(code)
+// const code = 'rQ2NgzQiAydPPy0xbNJegDCh4VhHF9wbEefYbHeNxlY';
+
+// if (code) {
+//     unsplash.auth.userAuthentication(code)
+//         .then(res =>
+//             res.json())
+//         .then(json => {
+//             unsplash.auth.setBearerToken(json.access_token);
+//             //делаем что-то от имени пользователя
+//         });
+// }
 
 const photo = unsplash.photos.getRandom({count:10}).then(result =>{
     const responcePhotos = result.response

@@ -17,7 +17,21 @@ const unsplash = createApi({
     fetch:nodeFetch
 });
 
+const code = location.search.split('code=')[1];
+console.log(code)
 
+if (code) {
+        unsplash.auth.userAuthentication(code)
+        .then(res =>
+            res.json()
+            )
+
+        .then(json => {
+            console.log(json)
+            unsplash.auth.setBearerToken(json.access_token);
+            //делаем что-то от имени пользователя
+        });
+}
 const MainPublication = ({imgSrc}) =>{
 
     const classes = useStyles();
