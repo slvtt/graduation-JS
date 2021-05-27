@@ -24,6 +24,12 @@ body{
     border:1px solid #efefef;
     padding: 15px;
 }
+
+.like-button-group{
+    display:flex;
+    align-items: center;
+}
+
 .btn {
     padding: 10px;
     margin-right: 15px;

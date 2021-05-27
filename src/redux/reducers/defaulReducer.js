@@ -2,7 +2,7 @@ const initialState = {
     me:'first user',
     arr:[]
 }
-export const fooReducer = (state = initialState,action)=>{
+export const defaultReducer = (state = initialState,action)=>{
     switch (action.type){
         
         case 'foo':

@@ -15,9 +15,8 @@ const unsplash = createApi({
     
     fetch:nodeFetch
 });
-const code = location.search.split('code=')[1];
-console.log(code)
-// const code = 'rQ2NgzQiAydPPy0xbNJegDCh4VhHF9wbEefYbHeNxlY';
+
+// const code = 'rQ2NgzQiAydPPy0xbNJegDCh4VhHF9wbEefYbHeNx;lY';
 
 // if (code) {
 //     unsplash.auth.userAuthentication(code)

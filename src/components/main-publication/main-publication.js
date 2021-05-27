@@ -4,45 +4,14 @@ import classNames from 'classnames';
 import {makeStyles} from '@material-ui/core/styles';
 import LikeBtnGroup from '../like-group/likeGroup';
 
-import nodeFetch from 'node-fetch';
-import { createApi } from 'unsplash-js';
+import { nanoid } from 'nanoid'
 
-const unsplash = createApi({
-    accessKey:'wdNn-PaVrpGbxNb07igZx_c2D-f8ux2_1LTZb-uyA6U',
-
-    secret:"vlJy_e3ElNhZFQntKWkm653HgKv0JpU1dj1Ln7NOB64",
-
-    callbackUrl: "urn:ietf:wg:oauth:2.0:oob",
-
-    fetch:nodeFetch
-});
-
-const code = 'rQ2NgzQiAydPPy0xbNJegDCh4VhHF9wbEefYbHeNxlY';
-console.log(code)
-
-unsplash.get({
-    redirect_uri:"urn:ietf:wg:oauth:2.0:oob",
-    scope:public
-})
-
-if (code) {
-        unsplash.auth.userAuthentication(code)
-        .then(res =>
-            res.json()
-            )
-
-        .then(json => {
-            console.log(json)
-            unsplash.auth.setBearerToken(json.access_token);
-            //делаем что-то от имени пользователя
-        });
-}
 const MainPublication = ({imgSrc}) =>{
 
     const classes = useStyles();
 
     return imgSrc.map((item,index) =>(
-            <Grid style={{ height: 'auto !important' }} item xs={6} >
+            <Grid key={nanoid(10)}  style={{ height: 'auto !important' }} item xs={6} >
                     <div>
                         <div className="header-img-block">
                             <Avatar className={classes.purpleAvatar}>N</Avatar>

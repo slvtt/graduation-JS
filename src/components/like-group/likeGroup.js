@@ -1,19 +1,30 @@
-import React from 'react';
+import { nanoid } from 'nanoid';
+import React, { useState } from 'react';
+
+import defaultImgWhite from '../../public/img/love_btn.png';
+import defaultImgRed from '../../public/img/love_btn_active.png'
 
 const LikeBtnGroup = () => {
-    const likeClick = (e) => {
-        // console.log(e)
-        e.preventDefault()
-        const btn = document.querySelector('.like-btn');
-        console.log(btn)
-        btn.classList.add("active")
+
+    const defaultImg = defaultImgWhite;
+    const defaultImgActive = defaultImgRed;
+    
+    const [flag,setFlag] = useState(false)
+
+
+    const likeClick = () => {
+        setFlag(flag = true)
     }
+
     return(
         <section className="like-button-group">
-            <button 
-            className=" btn like-btn "
+            <button
+            id = {nanoid()}
+            className=" btn"
             onClick = {likeClick}
-            ></button>
+            >
+                <img src={flag === true? defaultImgActive  : defaultImg } />
+            </button>
             <button className="magnifier btn"></button>
         </section>
     )
