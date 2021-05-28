@@ -13,7 +13,7 @@ const LikeBtnGroup = () => {
 
 
     const likeClick = () => {
-        setFlag(flag = true)
+        setFlag(!flag)
     }
 
     return(
