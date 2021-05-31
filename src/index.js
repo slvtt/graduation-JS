@@ -20,9 +20,6 @@ store.subscribe(() => {
     saveState(store.getState())
 })
 
-const cors = cors
-
-app.use(cors())
 ReactDOM.render(
     <Provider store ={store}>
         <React.StrictMode>
