@@ -39,8 +39,20 @@ const photo = unsplash.photos.getRandom({count:10}).then(result =>{
 
 })
 
-const array = JSON.parse(window.localStorage.getItem('photos'))
+const array = JSON.parse(window.localStorage.getItem('photos'));
 
+const clientId = 'wdNn-PaVrpGbxNb07igZx_c2D-f8ux2_1LTZb-uyA6U';
+const redirectUri = 'urn:ietf:wg:oauth:2.0:oob';
+let responce = await fetch('https://unsplash.com/oauth/authorize)',{
+    headers:{
+        client_id:clientId,
+        redirect_uri:redirectUri,
+
+    }
+})
+
+let result = await responce.json();
+console.log(result);
 // console.log(array)
 
 function Main () {
@@ -58,15 +70,13 @@ function Main () {
     // console.log(photos)
     return(
         <main>
-        <Container style={{marginTop:'40px'}} >
-            <Grid container spacing={10}>
-
-                <MainPublication
-                    imgSrc = {photos}
-                />
-            </Grid>
-
-        </Container>
+            <Container style={{marginTop:'40px'}} >
+                <Grid container spacing={10}>
+                    <MainPublication
+                        imgSrc = {photos}
+                    />
+                </Grid>
+            </Container>
             </main>
     )
 }

@@ -11,7 +11,6 @@ const LikeBtnGroup = () => {
     
     const [flag,setFlag] = useState(false)
 
-
     const likeClick = () => {
         setFlag(!flag)
     }
