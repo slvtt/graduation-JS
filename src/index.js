@@ -11,6 +11,7 @@ import App from './containers/app';
 
 import 'normalize.css';
 import './sass/index.scss';
+import  cors from 'cors';
 
 const state = loadState()
 const store = createStore(defaultReducer,state,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
@@ -18,6 +19,10 @@ const store = createStore(defaultReducer,state,window.__REDUX_DEVTOOLS_EXTENSION
 store.subscribe(() => {
     saveState(store.getState())
 })
+
+const cors = cors
+
+app.use(cors())
 ReactDOM.render(
     <Provider store ={store}>
         <React.StrictMode>

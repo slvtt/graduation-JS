@@ -43,11 +43,9 @@ const array = JSON.parse(window.localStorage.getItem('photos'));
 
 const clientId = 'wdNn-PaVrpGbxNb07igZx_c2D-f8ux2_1LTZb-uyA6U';
 const redirectUri = 'urn:ietf:wg:oauth:2.0:oob';
-let responce = await fetch('https://unsplash.com/oauth/authorize)',{
+let responce = await fetch("https://unsplash.com/oauth/authorize",{
     headers:{
-        client_id:clientId,
-        redirect_uri:redirectUri,
-
+        client_id:'vlJy_e3ElNhZFQntKWkm653HgKv0JpU1dj1Ln7NOB64',
     }
 })
 

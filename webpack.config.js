@@ -47,15 +47,16 @@ let conf = {
                 ]
             },
             {
-                test: /\.(js|mjs|jsx|ts|tsx)$/,
+                test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: 'babel-loader',
-                    options: {
-                        plugins: ['@babel/plugin-syntax-top-level-await'],
-                    }
-                }
+                    loader:'babel-loader',
+                    options:{
+                        presets:['@babel/preset-env']
+                    },
+                },
             },
+
             {
                 test: /\.(woff|woff2)$/,
                 use: [
@@ -91,6 +92,10 @@ let conf = {
         open: true,
         writeToDisk: false,
     },
+    experiments: {
+        topLevelAwait: true,
+        asyncWebAssembly: true
+    }
 }
 
 module.exports = conf;
