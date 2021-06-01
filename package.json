@@ -14,6 +14,7 @@
   },
   "author": "salavat",
   "license": "ISC",
+  "proxy": "http://localhost:3000",
   "bugs": {
     "url": "https://github.com/salavat876/graduation-JS/issues"
   },

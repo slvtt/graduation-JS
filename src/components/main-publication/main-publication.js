@@ -6,7 +6,7 @@ import LikeBtnGroup from '../like-group/likeGroup';
 
 import { nanoid } from 'nanoid'
 
-const MainPublication = ({imgSrc}) =>{
+const MainPublication = ({imgSrc,userLinks,userImg,userNickName,countLike}) =>{
 
     const classes = useStyles();
 
@@ -14,9 +14,9 @@ const MainPublication = ({imgSrc}) =>{
             <Grid key={nanoid(10)}  style={{ height: 'auto !important' }} item xs={6} >
                     <div>
                         <div className="header-img-block">
-                            <Avatar className={classes.purpleAvatar}>N</Avatar>
+                            <Avatar src={userImg[index]}></Avatar>
                             <Box className={classNames(classes.colorBlack,classes.nickName,classes.nickNameMain)}  component="span">
-                                NickName
+                                <a href={userLinks[index]}>{userNickName[index]}</a>
                             </Box>
                         </div>
                         <div className="main-img">
@@ -24,6 +24,7 @@ const MainPublication = ({imgSrc}) =>{
                         </div>
 
                         <div className="main-img_like">
+                            <span className="like-counter">Нравится:{countLike[index]}</span>
                             <LikeBtnGroup />
                         </div>
                     </div>

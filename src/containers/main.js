@@ -6,55 +6,54 @@ import { createApi } from 'unsplash-js';
 
 
 import MainPublication from '../components/main-publication/main-publication';
+
+const redirectUri = 'urn:ietf:wg:oauth:2.0:oob';
+const accessKey = 'wdNn-PaVrpGbxNb07igZx_c2D-f8ux2_1LTZb-uyA6U';
+const secret = 'vlJy_e3ElNhZFQntKWkm653HgKv0JpU1dj1Ln7NOB64';
+
 const unsplash = createApi({
-    accessKey:'wdNn-PaVrpGbxNb07igZx_c2D-f8ux2_1LTZb-uyA6U',
+    accessKey:accessKey,
 
-    secret:"vlJy_e3ElNhZFQntKWkm653HgKv0JpU1dj1Ln7NOB64",
+    secret:secret,
 
-    callbackUrl: "urn:ietf:wg:oauth:2.0:oob",
+    callbackUrl: redirectUri,
     
-    fetch:nodeFetch
+    fetch:nodeFetch,
+
 });
 
-// const code = 'rQ2NgzQiAydPPy0xbNJegDCh4VhHF9wbEefYbHeNx;lY';
-
-// if (code) {
-//     unsplash.auth.userAuthentication(code)
-//         .then(res =>
-//             res.json())
-//         .then(json => {
-//             unsplash.auth.setBearerToken(json.access_token);
-//             //делаем что-то от имени пользователя
-//         });
-// }
 
 const photo = unsplash.photos.getRandom({count:10}).then(result =>{
     const responcePhotos = result.response
-    // console.log(responcePhotos)
-    let arrUrls=responcePhotos.map(item => item.urls.regular)
+    console.log(responcePhotos)
+
+    const linksUsers = responcePhotos.map(item => item.user.links.html)
+    const arrUrls=responcePhotos.map(item => item.urls.regular)
+    const profileImages= responcePhotos.map(item => item.user.profile_image.small)
+    const userNickName = responcePhotos.map(item => item.user.username)
+    const countLike = responcePhotos.map(item => item.likes)
+    //console.log(profileImages)
 
     let users = responcePhotos.map(item => item.user.links.self)
     // console.log(users)
+    localStorage.setItem('userImg',JSON.stringify((profileImages)))
+    localStorage.setItem('users_urls',JSON.stringify(linksUsers))
+    localStorage.setItem('user_names',JSON.stringify(userNickName))
+    localStorage.setItem('likes',JSON.stringify(countLike))
     localStorage.setItem('photos',JSON.stringify(arrUrls))
 
 })
 
 const array = JSON.parse(window.localStorage.getItem('photos'));
 
-const clientId = 'wdNn-PaVrpGbxNb07igZx_c2D-f8ux2_1LTZb-uyA6U';
-const redirectUri = 'urn:ietf:wg:oauth:2.0:oob';
-let responce = await fetch("https://unsplash.com/oauth/authorize",{
-    headers:{
-        client_id:'vlJy_e3ElNhZFQntKWkm653HgKv0JpU1dj1Ln7NOB64',
-    }
-})
 
-let result = await responce.json();
-console.log(result);
-// console.log(array)
 
 function Main () {
     const [photos,setPhotos] = useState([]);
+    const [links,setlinks] = useState([]);
+    const [profImg,setProfImg] = useState([]);
+    const [userNick,setUserNick] = useState([]);
+    const [photoLike,setPhotoLike] = useState([]);
 
     useEffect(()=>{
         const raw = localStorage.getItem('photos')
@@ -63,15 +62,42 @@ function Main () {
             setPhotos(JSON.parse(raw))
         }
         
+    },[]);
+
+    useEffect(()=>{
+        const arrLinks = localStorage.getItem('users_urls');
+
+        if(arrLinks) setlinks(JSON.parse(arrLinks))
+    },[]);
+
+    useEffect(()=>{
+        const arrProfImg = localStorage.getItem('userImg');
+
+        if(arrProfImg) setProfImg(JSON.parse(arrProfImg))
     },[])
 
-    // console.log(photos)
+    useEffect(()=>{
+        const userNicks = localStorage.getItem('user_names')
+
+        if (userNicks) setUserNick(JSON.parse(userNicks))
+    },[])
+
+    useEffect(()=>{
+        const userLikes = localStorage.getItem('likes')
+
+        if (userLikes) setPhotoLike(JSON.parse(userLikes))
+    },[])
+
     return(
         <main>
             <Container style={{marginTop:'40px'}} >
                 <Grid container spacing={10}>
                     <MainPublication
+                        userNickName = {userNick}
+                        userImg = {profImg}
+                        countLike = {photoLike}
                         imgSrc = {photos}
+                        userLinks = {links}
                     />
                 </Grid>
             </Container>
