@@ -22,7 +22,6 @@ const unsplash = createApi({
 
 });
 
-
 const photo = unsplash.photos.getRandom({count:10}).then(result =>{
     const responcePhotos = result.response
     console.log(responcePhotos)

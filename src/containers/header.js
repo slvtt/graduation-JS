@@ -6,6 +6,7 @@ import { AppBar,Avatar,Box,Container, Grid, Link, Toolbar } from '@material-ui/c
 import {makeStyles} from '@material-ui/core/styles';
 //import logo of app
 import Logo from '../public/img/Lilgram.png';
+import UserLink from "../components/userLink/userLink";
 
 function Header() {
     const classes = useStyles()
@@ -14,13 +15,7 @@ function Header() {
         <AppBar className={classes.header}>
                 <Container >
                     <Toolbar className={classes.spaceBetween}>
-                        <Link>
-                            <img src ={Logo}/>
-                        </Link>
-                        <Box className={classes.nickAvatar}>
-                            <Box className={classNames(classes.colorBlack,classes.nickName)}  component="span">NickName</Box>
-                            <Avatar className={classes.purpleAvatar}>N</Avatar>
-                        </Box>
+                        <UserLink />
                     </Toolbar>
                 </Container>
             </AppBar>
