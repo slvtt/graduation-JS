@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Avatar, Box, Link} from '@material-ui/core';
 import Logo from '../../public/img/Lilgram.png'
 import classNames from "classnames";
@@ -6,38 +6,44 @@ import {makeStyles} from '@material-ui/core/styles';
 
 const UserLink = () => {
 
+
     const redirectUri = 'urn:ietf:wg:oauth:2.0:oob';
     const accessKey = 'wdNn-PaVrpGbxNb07igZx_c2D-f8ux2_1LTZb-uyA6U';
     const secret = 'vlJy_e3ElNhZFQntKWkm653HgKv0JpU1dj1Ln7NOB64';
-    const code = 'Bsb2UfxtAHZT4EXcBC_f4ujTseQA3eH3IruMYaYDd38';
+    const code = `${window.location.code}`;
     const grant_type = 'authorization_code'
-
+    const url = 'https://unsplash.com/oauth/token';
     const classes = useStyles()
 
+    const [auth,setAuth] = useState(false);
+
     const getAuth = () =>{
-        window.location.href = `https://unsplash.com/oauth/authorize?client_id=${accessKey}&redirect_uri=${redirectUri}&response_type=code&scope=public`
+        location.href = `https://unsplash.com/oauth/authorize?client_id=${accessKey}&redirect_uri=${redirectUri}&response_type=code&scope=public`
+        setAuth(!auth)
     }
 
-    const url = 'https://unsplash.com/oauth/token';
+    useEffect(()=>{
+        fetch (url,{
+            method:'POST',
+            headers:{
+                'client_id':accessKey,
+                'client_secret':secret,
+                'redirect_uri':'urn:ietf:wg:oauth:2.0:oob',
+                'code':'Bsb2UfxtAHZT4EXcBC_f4ujTseQA3eH3IruMYaYDd38',
+                'grant_type':'authorization_code'
+            }
+        }).then(res => res.json())
+            .then(res => console.log(res))
+        console.log(1)
+    },[auth])
 
-    fetch (url,{
-        method:'POST',
-        headers:{
-          'client_id':'wdNn-PaVrpGbxNb07igZx_c2D-f8ux2_1LTZb-uyA6U',
-            'client_secret':'vlJy_e3ElNhZFQntKWkm653HgKv0JpU1dj1Ln7NOB64',
-            'redirect_uri':'urn:ietf:wg:oauth:2.0:oob',
-            'code':'Bsb2UfxtAHZT4EXcBC_f4ujTseQA3eH3IruMYaYDd38',
-            'grant_type':'authorization_code'
-        }
-    }).then(res => res.json())
-        .then(res => console.log(res))
     return(
         <>
-            <Link>
-                <img src ={Logo}/>
+            <Link >
+                <img  src ={Logo}/>
             </Link>
             <Box className={classes.nickAvatar}>
-                <Box className={classNames(classes.colorBlack,classes.nickName)}  component="span" onClick={getAuth}>NickName</Box>
+                <Box className={classNames(classes.colorBlack,classes.nickName)}  component="span" onClick={getAuth} >NickName</Box>
                 <Avatar className={classes.purpleAvatar}>N</Avatar>
             </Box>
         </>
