@@ -34,7 +34,11 @@ let conf = {
         new CleanWebpackPlugin(),
         new Dotenv({
             path: './.env', // Path to .env file (this is the default)
-            safe: true, // load .env.example (defaults to "false" which does not use dotenv-safe)
+            safe: true,
+            allowEmptyValues: true, // allow empty variables (e.g. `FOO=`) (treat it as empty string, rather than missing)
+            systemvars: true, // load all the predefined 'process.env' variables which will trump anything local per dotenv specs.
+            silent: true, // hide any errors
+            defaults: false // load '.env.defaults' as the default values if empty.// load .env.example (defaults to "false" which does not use dotenv-safe)
         })
     ],
     module: {
