@@ -1,6 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const Dotenv = require('dotenv-webpack');
+const webpack = require('webpack')
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 const mode = process.env.NODE_ENV;
 const isDev = mode === 'development';
@@ -29,7 +31,9 @@ let conf = {
         new MiniCssExtractPlugin({
             filename: `./css/${filename('css')}`
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new Dotenv(),
+        new webpack.EnvironmentPlugin(['NODE_ENV', 'DEBUG'])
     ],
     module: {
         rules: [
