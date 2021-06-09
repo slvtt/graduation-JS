@@ -1,9 +1,7 @@
-const dotenv = require('dotenv').config({path: __dirname + '/.env'});
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Dotenv = require('dotenv-webpack');
-import { DefinePlugin } from 'webpack'
 const webpack = require('webpack')
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 const mode = process.env.NODE_ENV;
@@ -34,8 +32,9 @@ let conf = {
             filename: `./css/${filename('css')}`
         }),
         new CleanWebpackPlugin(),
-        new webpack.DefinePlugin({
-            "process.env": dotenv.parsed
+        new Dotenv({
+            path: './.env', // Path to .env file (this is the default)
+            safe: true, // load .env.example (defaults to "false" which does not use dotenv-safe)
         })
     ],
     module: {
