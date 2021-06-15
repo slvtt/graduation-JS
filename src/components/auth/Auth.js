@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 import './index.css'
 const Auth = (props) =>  {
 
-/*    const redirectUri = 'urn:ietf:wg:oauth:2.0:oob';
+  const redirectUri = 'urn:ietf:wg:oauth:2.0:oob';
     const accessKey = 'wdNn-PaVrpGbxNb07igZx_c2D-f8ux2_1LTZb-uyA6U';
     const secret = 'vlJy_e3ElNhZFQntKWkm653HgKv0JpU1dj1Ln7NOB64';
     const code = `tergopE5VPB8n18Uj6JDdXGAPDDSqEFIzVZrDKBgO0Y`;
@@ -22,7 +22,7 @@ const Auth = (props) =>  {
             }
         }).then(res => res.json())
             .then(res => console.log(res))
-    },[])*/
+    },[])
 
     return(
         <div className="modal-overlay">
