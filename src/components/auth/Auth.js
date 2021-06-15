@@ -1,5 +1,7 @@
 import React from "react";
-const Auth = () =>  {
+
+import './index.css'
+const Auth = (props) =>  {
 
 /*    const redirectUri = 'urn:ietf:wg:oauth:2.0:oob';
     const accessKey = 'wdNn-PaVrpGbxNb07igZx_c2D-f8ux2_1LTZb-uyA6U';
@@ -21,10 +23,18 @@ const Auth = () =>  {
         }).then(res => res.json())
             .then(res => console.log(res))
     },[])*/
-    console.log(process.env)
+
     return(
-        <p>Auth...</p>
+        <div className="modal-overlay">
+            <div className="modal">
+                <div className="modal-guts">
+                    <p>something</p>
+                    <button onClick={()=> props.history.goBack()}>back</button>
+                </div>
+            </div>
+        </div>
+
     );
-};
+}
 
 export default Auth;
