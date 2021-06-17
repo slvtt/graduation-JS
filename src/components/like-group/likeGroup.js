@@ -8,8 +8,7 @@ import {Switch, Link, BrowserRouter,Route} from "react-router-dom";
 
 import BigImg from "../main-publication/BigImg/bigImg";
 
-const LikeBtnGroup = () => {
-
+const LikeBtnGroup = ({photo,userNickName,userImg}) => {
     const defaultImg = defaultImgWhite;
     const defaultImgActive = defaultImgRed;
     
@@ -20,7 +19,7 @@ const LikeBtnGroup = () => {
     }
 
     return(
-        <BrowserRouter>
+        <BrowserRouter history={history}>
             <section className="like-button-group">
                 <button
                     id = {nanoid()}
@@ -33,7 +32,12 @@ const LikeBtnGroup = () => {
             </section>
 
             <Switch>
-               <Route exact path="/big-img" component={BigImg} />
+               <Route exact path="/big-img">
+                   <BigImg photo={photo}
+                        userImg={userImg}
+                           userNickName={userNickName}
+                   />
+               </Route>
             </Switch>
         </BrowserRouter>
 

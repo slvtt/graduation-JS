@@ -7,7 +7,7 @@ import LikeBtnGroup from '../like-group/likeGroup';
 import { nanoid } from 'nanoid'
 
 const MainPublication = ({imgSrc,userLinks,userImg,userNickName,countLike}) =>{
-
+    const userNick = userNickName
     const classes = useStyles();
 
     return imgSrc.map((item,index) =>(
@@ -25,7 +25,11 @@ const MainPublication = ({imgSrc,userLinks,userImg,userNickName,countLike}) =>{
 
                         <div className="main-img_like">
                             <span className="like-counter">Нравится:{countLike[index]}</span>
-                            <LikeBtnGroup />
+                            <LikeBtnGroup
+                                photo={item}
+                                userNickName={userNick[index]}
+                                userImg={userImg[index]}
+                            />
                         </div>
                     </div>
                 </Grid>

@@ -13,7 +13,7 @@ const Auth = (props) =>  {
     useEffect(()=>{
         fetch (url,{
             method:'POST',
-            headers:{
+            body:{
                 'client_id':accessKey,
                 'client_secret':secret,
                 'redirect_uri':redirectUri,
