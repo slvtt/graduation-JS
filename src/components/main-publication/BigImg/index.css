@@ -6,7 +6,7 @@
     background: #fbfbfb;
     width: 47%;
     max-width: 100%;
-    height: 89%;
+    height: 934px;
     max-height: 100%;
 }
 
@@ -22,7 +22,7 @@
     height: 100%;
 
     /* отступы при необходимости */
-    padding: 20px;
+    padding: 30px;
 
     /* прокрутка */
     overflow: auto;
@@ -43,6 +43,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin: 0 0 30px;
 }
 
 .overlay-photo img{
@@ -58,4 +59,13 @@
     width: 100%;
     height: 40px;
     margin: 0 0 15px 0;
+}
+
+.back{
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    background: #ffffff;
 }

@@ -1,8 +1,10 @@
 import React from "react";
 
 import './index.css';
+
+import backBtn from '../../../public/img/back-btn.png'
 import {Avatar, Box} from "@material-ui/core";
-const BigImg = ({photo,userImg,userNickName}) => {
+const BigImg = ({photo,userImg,userNickName,history}) => {
     return(
 
     <div className="modal-overlay">
@@ -15,7 +17,9 @@ const BigImg = ({photo,userImg,userNickName}) => {
                     </div>
                    <img src={photo}/>
                 </div>
-                <button onClick={()=> history.goBack()}>back</button>
+                <button className="back" onClick={()=> history.goBack()}>
+                    <img src={backBtn}/>
+                </button>
             </div>
         </div>
     </div>

@@ -1,10 +1,11 @@
 import { nanoid } from 'nanoid';
 import React, { useState } from 'react';
+import {useHistory} from "react-router-dom";
 
 import defaultImgWhite from '../../public/img/love_btn.png';
 import defaultImgRed from '../../public/img/love_btn_active.png'
 
-import {Switch, Link, BrowserRouter,Route} from "react-router-dom";
+import {Switch, Link,BrowserRouter as Router,Route} from "react-router-dom";
 
 import BigImg from "../main-publication/BigImg/bigImg";
 
@@ -18,8 +19,10 @@ const LikeBtnGroup = ({photo,userNickName,userImg}) => {
         setFlag(!flag)
     }
 
+    const history = useHistory();
+
     return(
-        <BrowserRouter history={history}>
+        <Router>
             <section className="like-button-group">
                 <button
                     id = {nanoid()}
@@ -33,13 +36,15 @@ const LikeBtnGroup = ({photo,userNickName,userImg}) => {
 
             <Switch>
                <Route exact path="/big-img">
-                   <BigImg photo={photo}
-                        userImg={userImg}
-                           userNickName={userNickName}
+                   <BigImg
+                       history={history}
+                       photo={photo}
+                       userImg={userImg}
+                       userNickName={userNickName}
                    />
                </Route>
             </Switch>
-        </BrowserRouter>
+        </Router>
 
     )
 }

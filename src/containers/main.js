@@ -6,7 +6,6 @@ import { createApi } from 'unsplash-js';
 
 
 import MainPublication from '../components/main-publication/main-publication';
-import {Router} from "react-router";
 
 const redirectUri = 'urn:ietf:wg:oauth:2.0:oob';
 const accessKey = 'wdNn-PaVrpGbxNb07igZx_c2D-f8ux2_1LTZb-uyA6U';
