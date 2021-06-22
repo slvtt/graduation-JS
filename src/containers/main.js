@@ -4,23 +4,26 @@ import { Container,Grid } from '@material-ui/core';
 import nodeFetch from 'node-fetch';
 import { createApi } from 'unsplash-js';
 
+import {accessKey,redirect_url,secret} from '../consts/consts'
 
 import MainPublication from '../components/main-publication/main-publication';
 
-const redirectUri = 'urn:ietf:wg:oauth:2.0:oob';
-const accessKey = 'wdNn-PaVrpGbxNb07igZx_c2D-f8ux2_1LTZb-uyA6U';
-const secret = 'vlJy_e3ElNhZFQntKWkm653HgKv0JpU1dj1Ln7NOB64';
 
 const unsplash = createApi({
     accessKey:accessKey,
 
     secret:secret,
 
-    callbackUrl: redirectUri,
+    callbackUrl: redirect_url,
     
     fetch:nodeFetch,
 
 });
+
+/*const authenticationUrl = unsplash.auth.getAuthenticationUrl([
+    "public",
+    "write_likes"
+])*/
 
 const photo = unsplash.photos.getRandom({count:10}).then(result =>{
     const responcePhotos = result.response

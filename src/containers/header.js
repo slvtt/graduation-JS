@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 //import material UI
 import {AppBar, Avatar, Box, Container, Toolbar} from '@material-ui/core';
 
@@ -19,7 +19,7 @@ import {
 import {Redirect} from "react-router";
 
 function Header() {
-    const classes = useStyles()
+    const classes = useStyles();
     return(
         <Router>
             <AppBar className={classes.header}>
@@ -30,6 +30,7 @@ function Header() {
                         </div>
                         <Box className={classes.nickAvatar}>
                             <Box className={classNames(classes.colorBlack,classes.nickName)}  component="span" ><Link to="/auth">Auth</Link></Box>
+
                             <Avatar className={classes.purpleAvatar}>N</Avatar>
                         </Box>
                     </Toolbar>
