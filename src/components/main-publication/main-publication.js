@@ -6,9 +6,11 @@ import LikeBtnGroup from '../like-group/likeGroup';
 
 import { nanoid } from 'nanoid'
 
-const MainPublication = ({imgSrc,userLinks,userImg,userNickName,countLike}) =>{
+const MainPublication = ({imgSrc,userLinks,userImg,userNickName,countLike,id}) =>{
     const userNick = userNickName
     const classes = useStyles();
+
+    console.log(id)
 
     return imgSrc.map((item,index) =>(
             <Grid key={nanoid(10)}  style={{ height: 'auto !important' }} item xs={6} >
@@ -29,6 +31,7 @@ const MainPublication = ({imgSrc,userLinks,userImg,userNickName,countLike}) =>{
                                 photo={item}
                                 userNickName={userNick[index]}
                                 userImg={userImg[index]}
+                                id = {id[index]}
                             />
                         </div>
                     </div>

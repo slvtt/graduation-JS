@@ -27,22 +27,22 @@ const unsplash = createApi({
 
 const photo = unsplash.photos.getRandom({count:10}).then(result =>{
     const responcePhotos = result.response
-    console.log(responcePhotos)
+    //console.log(responcePhotos)
 
     const linksUsers = responcePhotos.map(item => item.user.links.html)
     const arrUrls=responcePhotos.map(item => item.urls.regular)
     const profileImages= responcePhotos.map(item => item.user.profile_image.small)
     const userNickName = responcePhotos.map(item => item.user.username)
     const countLike = responcePhotos.map(item => item.likes)
-    //console.log(profileImages)
+    const photos_id = responcePhotos.map(item => item.id)
 
-    let users = responcePhotos.map(item => item.user.links.self)
-    // console.log(users)
+
     localStorage.setItem('userImg',JSON.stringify((profileImages)))
     localStorage.setItem('users_urls',JSON.stringify(linksUsers))
     localStorage.setItem('user_names',JSON.stringify(userNickName))
     localStorage.setItem('likes',JSON.stringify(countLike))
     localStorage.setItem('photos',JSON.stringify(arrUrls))
+    localStorage.setItem('photos_id',JSON.stringify(photos_id))
 
 })
 
@@ -56,6 +56,7 @@ function Main () {
     const [profImg,setProfImg] = useState([]);
     const [userNick,setUserNick] = useState([]);
     const [photoLike,setPhotoLike] = useState([]);
+    const [identifiers,setIdentifiers] = useState([]);
 
     useEffect(()=>{
         const raw = localStorage.getItem('photos')
@@ -90,6 +91,14 @@ function Main () {
         if (userLikes) setPhotoLike(JSON.parse(userLikes))
     },[])
 
+    useEffect(()=>{
+        const photos_id = localStorage.getItem('photos_id')
+
+        if (photos_id) {
+            setIdentifiers(JSON.parse(photos_id))
+        }
+    },[])
+
     return(
             <main>
                 <Container style={{marginTop:'40px'}} >
@@ -100,6 +109,7 @@ function Main () {
                             countLike = {photoLike}
                             imgSrc = {photos}
                             userLinks = {links}
+                            id = {identifiers}
                         />
                     </Grid>
                 </Container>
