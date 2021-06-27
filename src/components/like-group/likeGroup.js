@@ -17,15 +17,26 @@ const LikeBtnGroup = ({photo,userNickName,userImg,id}) => {
     const [flag,setFlag] = useState(false);
 
     const url = `https://api.unsplash.com/photos/${id}/like`;
-
+    const token = localStorage.getItem('token')
     const likeClick = () => {
         setFlag(!flag)
 
-        axios.post(url)
-            .then(photo => console.log('write_liked a photo'))
-            .catch(error => {
-                console.error(error)
-            })
+/*        fetch(url,{
+            method:'post',
+            headers:{
+                'Authorization':`Bearer ${token}`
+            }
+        })
+            .then(res => console.log(res))
+            .catch(err => console.log(err))*/
+
+        axios.post(url,null,{
+            headers:{
+                Authorization:`Bearer ${token}`
+            }
+        })
+            .then(res=> console.log(res))
+            .catch(err=>console.log(err))
     }
 
     const history = useHistory();
