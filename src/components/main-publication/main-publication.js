@@ -2,7 +2,7 @@ import React from 'react';
 import {Avatar ,Grid,Box } from '@material-ui/core';
 import classNames from 'classnames';
 import {makeStyles} from '@material-ui/core/styles';
-import LikeBtnGroup from '../like-group/likeGroup';
+import LikeBtnGroup from './like-group/likeGroup';
 
 import { nanoid } from 'nanoid'
 

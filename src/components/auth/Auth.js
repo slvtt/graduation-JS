@@ -11,7 +11,9 @@ const Auth = (props) =>  {
     fetch (`https://unsplash.com/oauth/token?client_id=${accessKey}&client_secret=${secret}&redirect_uri=${redirect_url}&code=${code}&grant_type=authorization_code`,{
         method:'POST',
     }).then(res => res.json())
-        .then(res => localStorage.setItem('token',JSON.stringify(res.access_token)))
+        .then(res => {
+            localStorage.setItem('token', JSON.stringify(res.access_token))
+        })
 },[])
 
 

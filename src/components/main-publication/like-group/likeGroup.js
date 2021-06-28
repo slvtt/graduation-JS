@@ -1,42 +1,51 @@
 import { nanoid } from 'nanoid';
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {useHistory} from "react-router-dom";
 import axios from "axios";
 
-import defaultImgWhite from '../../public/img/love_btn.png';
-import defaultImgRed from '../../public/img/love_btn_active.png';
+import defaultImgWhite from '../../../public/img/love_btn.png';
+import defaultImgRed from '../../../public/img/love_btn_active.png';
 
 import {Switch, Link,BrowserRouter as Router,Route} from "react-router-dom";
 
-import BigImg from "../main-publication/BigImg/bigImg";
+import BigImg from "../BigImg/bigImg";
 
 const LikeBtnGroup = ({photo,userNickName,userImg,id}) => {
+
     const defaultImg = defaultImgWhite;
     const defaultImgActive = defaultImgRed;
     
     const [flag,setFlag] = useState(false);
 
     const url = `https://api.unsplash.com/photos/${id}/like`;
-    const token = localStorage.getItem('token')
+
+    let token = JSON.parse(localStorage.getItem('token')) ;
+
+
     const likeClick = () => {
+
+        if(!flag){
+
+            axios.post(url,null,{
+                headers:{
+                    Authorization:`Bearer ${token}`
+                }
+            })
+                .then(res=> console.log(res))
+                .catch(err=>console.log(err))
+
+        } else {
+
+            axios.delete(url,{
+                headers:{
+                    Authorization:`Bearer ${token}`
+                }
+            })
+                .then(res => console.log(res))
+                .catch(err => console.log(err))
+        }
+
         setFlag(!flag)
-
-/*        fetch(url,{
-            method:'post',
-            headers:{
-                'Authorization':`Bearer ${token}`
-            }
-        })
-            .then(res => console.log(res))
-            .catch(err => console.log(err))*/
-
-        axios.post(url,null,{
-            headers:{
-                Authorization:`Bearer ${token}`
-            }
-        })
-            .then(res=> console.log(res))
-            .catch(err=>console.log(err))
     }
 
     const history = useHistory();
