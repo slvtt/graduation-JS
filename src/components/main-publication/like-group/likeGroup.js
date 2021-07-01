@@ -19,23 +19,27 @@ const LikeBtnGroup = ({photo,userNickName,userImg,id}) => {
 
     const url = `https://api.unsplash.com/photos/${id}/like`;
 
-    let token = JSON.parse(localStorage.getItem('token')) ;
-
+    let token = JSON.parse(localStorage.getItem('token'));
 
     const likeClick = () => {
 
         if(!flag){
 
-            axios.post(url,null,{
-                headers:{
-                    Authorization:`Bearer ${token}`
-                }
-            })
-                .then(res=> console.log(res))
-                .catch(err=>console.log(err))
+            if (token) {
+                axios.post(url,null,{
+                    headers:{
+                        Authorization:`Bearer ${token}`
+                    }
+                })
+                    .then(res=> console.log(res))
+                    .catch(err=>console.log(err))
+
+                setFlag(!flag)
+            } else {
+                alert('Похоже,что вы не авторизовались!')
+            }
 
         } else {
-
             axios.delete(url,{
                 headers:{
                     Authorization:`Bearer ${token}`
@@ -43,9 +47,11 @@ const LikeBtnGroup = ({photo,userNickName,userImg,id}) => {
             })
                 .then(res => console.log(res))
                 .catch(err => console.log(err))
+
+            setFlag(!flag)
         }
 
-        setFlag(!flag)
+
     }
 
     const history = useHistory();

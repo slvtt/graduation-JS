@@ -1,12 +1,17 @@
-import React, {useEffect} from 'react';
+import React from 'react';
+
+import {Redirect} from "react-router";
+
+import {connect} from "react-redux";
+
 //import material UI
 import {AppBar, Avatar, Box, Container, Toolbar} from '@material-ui/core';
 
 import {makeStyles} from '@material-ui/core/styles';
 
-import Logo from "../public/img/Lilgram.png";
-
 import classNames from "classnames";
+
+import Logo from "../public/img/Lilgram.png";
 
 import Auth from '../components/auth/Auth'
 
@@ -14,12 +19,14 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link, BrowserRouter
+    Link, useHistory
 } from "react-router-dom";
-import {Redirect} from "react-router";
 
-function Header() {
+
+function Header({authState}) {
     const classes = useStyles();
+    const history = useHistory();
+
     return(
         <Router>
             <AppBar className={classes.header}>
@@ -29,16 +36,32 @@ function Header() {
                             <img  src = {Logo}/>
                         </div>
                         <Box className={classes.nickAvatar}>
-                            <Box className={classNames(classes.colorBlack,classes.nickName)}  component="span" ><Link to="/auth">Auth</Link></Box>
 
-                            <Avatar className={classes.purpleAvatar}>N</Avatar>
+                            {
+                                !authState.isAuth
+                                ? <>
+                                        <Box className={classNames(classes.colorBlack,classes.nickName)}  component="span" ><Link to="/auth">Auth</Link></Box>
+                                        <Avatar className={classes.purpleAvatar}>N</Avatar>
+                                    </>
+                                : <h2 className="app-title">
+                                    Смотрите и наслаждайтесь красивыми фотографиями c Lilgram!
+                                    </h2>
+                            }
+
+
                         </Box>
                     </Toolbar>
                 </Container>
             </AppBar>
             <Switch>
-                <Route exact path = "/auth" component={Auth} />
+
+                <Route exact path = "/auth" >
+                    <Auth
+                        history={history}
+                    />
+                </Route>
                 <Redirect to="/" />
+
             </Switch>
         </Router>
     )
@@ -72,4 +95,10 @@ const useStyles = makeStyles({
 
 })
 
-export default Header
+const mapStateToProps = state => {
+    return {
+        authState:state.authReducer
+    }
+}
+
+export default connect (mapStateToProps,null)(Header)

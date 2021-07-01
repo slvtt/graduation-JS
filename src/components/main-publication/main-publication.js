@@ -10,8 +10,6 @@ const MainPublication = ({imgSrc,userLinks,userImg,userNickName,countLike,id}) =
     const userNick = userNickName
     const classes = useStyles();
 
-    console.log(id)
-
     return imgSrc.map((item,index) =>(
             <Grid key={nanoid(10)}  style={{ height: 'auto !important' }} item xs={6} >
                     <div>

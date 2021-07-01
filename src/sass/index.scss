@@ -148,5 +148,16 @@ body{
     font-weight: bold;
 }
 
+.app-title{
+    color: black;
+    font-size: 17px;
+
+}
+
+@media screen and (max-width: 1080px){
+    .app-title{
+        display: none;
+    }
+}
 
 

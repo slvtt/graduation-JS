@@ -20,14 +20,10 @@ const unsplash = createApi({
 
 });
 
-/*const authenticationUrl = unsplash.auth.getAuthenticationUrl([
-    "public",
-    "write_likes"
-])*/
 
 const photo = unsplash.photos.getRandom({count:10}).then(result =>{
     const responcePhotos = result.response
-    //console.log(responcePhotos)
+
 
     const linksUsers = responcePhotos.map(item => item.user.links.html)
     const arrUrls=responcePhotos.map(item => item.urls.regular)
