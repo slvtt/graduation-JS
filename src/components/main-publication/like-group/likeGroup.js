@@ -10,18 +10,22 @@ import {Switch, Link,BrowserRouter as Router,Route} from "react-router-dom";
 
 import BigImg from "../BigImg/bigImg";
 
-const LikeBtnGroup = ({photo,userNickName,userImg,id}) => {
+const LikeBtnGroup = ({photo,userNickName,userImg,id,countLike,setLikes}) => {
 
     const defaultImg = defaultImgWhite;
     const defaultImgActive = defaultImgRed;
-    
+
+
     const [flag,setFlag] = useState(false);
 
     const url = `https://api.unsplash.com/photos/${id}/like`;
 
     let token = JSON.parse(localStorage.getItem('token'));
 
+
     const likeClick = () => {
+
+        console.log(countLike)
 
         if(!flag){
 

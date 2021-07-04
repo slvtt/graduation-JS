@@ -103,6 +103,7 @@ function Main () {
                             userNickName = {userNick}
                             userImg = {profImg}
                             countLike = {photoLike}
+                            setLikes={setPhotoLike}
                             imgSrc = {photos}
                             userLinks = {links}
                             id = {identifiers}
