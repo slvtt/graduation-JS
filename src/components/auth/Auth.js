@@ -51,6 +51,7 @@ const Auth = ({history,authAction,getToken}) =>  {
                                         Назад
 
                                     </Button>
+
                                     <a href={`https://unsplash.com/oauth/authorize?client_id=${accessKey}&redirect_uri=${redirect_url}&response_type=code&scope=public+read_user+write_likes`}>Ссылка на получение кода</a>
                             </>
                                 :

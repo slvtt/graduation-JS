@@ -6,7 +6,7 @@ import LikeBtnGroup from './like-group/likeGroup';
 
 import { nanoid } from 'nanoid'
 
-const MainPublication = ({imgSrc,userLinks,userImg,userNickName,countLike,id,setLikes}) =>{
+const MainPublication = ({imgSrc,userLinks,userImg,userNickName,countLike,id}) =>{
     const userNick = userNickName
     const classes = useStyles();
 
@@ -31,7 +31,6 @@ const MainPublication = ({imgSrc,userLinks,userImg,userNickName,countLike,id,set
                                 userImg={userImg[index]}
                                 countLike={countLike[index]}
                                 id = {id[index]}
-                                setLikes={setLikes}
                             />
                         </div>
                     </div>

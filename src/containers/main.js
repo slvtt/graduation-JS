@@ -8,6 +8,8 @@ import {accessKey,redirect_url,secret} from '../consts/consts'
 
 import MainPublication from '../components/main-publication/main-publication';
 
+import {connect} from "react-redux";
+
 
 const unsplash = createApi({
     accessKey:accessKey,
@@ -46,13 +48,17 @@ const array = JSON.parse(window.localStorage.getItem('photos'));
 
 
 
-function Main () {
+function Main ({addSomething}) {
+
+
+
     const [photos,setPhotos] = useState([]);
     const [links,setlinks] = useState([]);
     const [profImg,setProfImg] = useState([]);
     const [userNick,setUserNick] = useState([]);
     const [photoLike,setPhotoLike] = useState([]);
     const [identifiers,setIdentifiers] = useState([]);
+
 
     useEffect(()=>{
         const raw = localStorage.getItem('photos')
@@ -63,19 +69,22 @@ function Main () {
         
     },[]);
 
-    useEffect(()=>{
+    useEffect(() => {
+
         const arrLinks = localStorage.getItem('users_urls');
 
         if(arrLinks) setlinks(JSON.parse(arrLinks))
     },[]);
 
-    useEffect(()=>{
+    useEffect(() => {
+
         const arrProfImg = localStorage.getItem('userImg');
 
         if(arrProfImg) setProfImg(JSON.parse(arrProfImg))
     },[])
 
     useEffect(()=>{
+
         const userNicks = localStorage.getItem('user_names')
 
         if (userNicks) setUserNick(JSON.parse(userNicks))
@@ -84,7 +93,9 @@ function Main () {
     useEffect(()=>{
         const userLikes = localStorage.getItem('likes')
 
-        if (userLikes) setPhotoLike(JSON.parse(userLikes))
+        if (userLikes){
+            setPhotoLike(JSON.parse(userLikes))
+        }
     },[])
 
     useEffect(()=>{
@@ -115,4 +126,17 @@ function Main () {
     )
 }
 
-export default Main
+const mapStateToProps = (state) => {
+    return {
+        testState:state
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+
+    return {
+        addSomething: (something) => dispatch({type:'LIKE',payload:something})
+    }
+}
+
+export default connect (mapStateToProps,null)(Main);
