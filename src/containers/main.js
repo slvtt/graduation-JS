@@ -10,6 +10,8 @@ import MainPublication from '../components/main-publication/main-publication';
 
 import {connect} from "react-redux";
 
+import {arrLike} from "../redux/actions/arrLikeAction";
+import {initialLikes} from "../redux/reducers/initialLikes";
 
 const unsplash = createApi({
     accessKey:accessKey,
@@ -32,9 +34,9 @@ const photo = unsplash.photos.getRandom({count:10}).then(result =>{
     const profileImages= responcePhotos.map(item => item.user.profile_image.small)
     const userNickName = responcePhotos.map(item => item.user.username)
     const countLike = responcePhotos.map(item => item.likes)
-    const photos_id = responcePhotos.map(item => item.id)
+    const photos_id = responcePhotos.map(item => item.id);
 
-
+    localStorage.setItem('response',JSON.stringify(responcePhotos))
     localStorage.setItem('userImg',JSON.stringify((profileImages)))
     localStorage.setItem('users_urls',JSON.stringify(linksUsers))
     localStorage.setItem('user_names',JSON.stringify(userNickName))
@@ -48,9 +50,7 @@ const array = JSON.parse(window.localStorage.getItem('photos'));
 
 
 
-function Main ({addSomething}) {
-
-
+function Main ({arrLike}) {
 
     const [photos,setPhotos] = useState([]);
     const [links,setlinks] = useState([]);
@@ -59,6 +59,13 @@ function Main ({addSomething}) {
     const [photoLike,setPhotoLike] = useState([]);
     const [identifiers,setIdentifiers] = useState([]);
 
+    useEffect(()=>{
+        const arrayObj = localStorage.getItem('response')
+
+        if(arrayObj) {
+            arrLike(JSON.parse(arrayObj))
+        }
+    },[])
 
     useEffect(()=>{
         const raw = localStorage.getItem('photos')
@@ -128,15 +135,12 @@ function Main ({addSomething}) {
 
 const mapStateToProps = (state) => {
     return {
-        testState:state
+        photosRes:state.initialLikes
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-
-    return {
-        addSomething: (something) => dispatch({type:'LIKE',payload:something})
-    }
+const mapDispatchToProps ={
+    arrLike
 }
 
-export default connect (mapStateToProps,null)(Main);
+export default connect (mapStateToProps,mapDispatchToProps)(Main);
