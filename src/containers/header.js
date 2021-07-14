@@ -5,7 +5,7 @@ import {Redirect} from "react-router";
 import {connect} from "react-redux";
 
 //import material UI
-import {AppBar, Avatar, Box, Container, Toolbar} from '@material-ui/core';
+import {AppBar, Avatar, Box, Button, Container, Toolbar} from '@material-ui/core';
 
 import {makeStyles} from '@material-ui/core/styles';
 
@@ -40,8 +40,7 @@ function Header({authState}) {
                             {
                                 !authState.isAuth
                                 ? <>
-                                        <Box className={classNames(classes.colorBlack,classes.nickName)}  component="span" ><Link to="/auth">Auth</Link></Box>
-                                        <Avatar className={classes.purpleAvatar}>N</Avatar>
+                                        <Button variant="outlined"><Link to="/auth">Авторизоваться</Link></Button>
                                     </>
                                 : <h2 className="app-title">
                                     Смотрите и наслаждайтесь красивыми фотографиями c Lilgram!

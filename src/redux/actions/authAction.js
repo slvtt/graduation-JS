@@ -1,8 +1,9 @@
 import {IS_AUTH} from "../types";
 
-export const authAction = () =>{
+export const authAction = (isAuth) =>{
     return {
-        type:IS_AUTH
+        type:IS_AUTH,
+        payload:isAuth
     }
 }
 

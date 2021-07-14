@@ -1,18 +1,20 @@
 import {ARR_LIKE,LIKE,REMOVE_LIKE} from "../types";
 
 const initialState = {
-    arrPhotos:null
+    arrPhotos:[]
 }
 
 export const initialLikes = (state = initialState,action) =>{
+
     switch (action.type) {
 
         case ARR_LIKE:
+
             return{
                 ...state,arrPhotos: action.payload
             }
 
-        case LIKE:
+/*        case LIKE:
 
             const currentLike = action.payload.like;
             const currentId = action.payload.id;
@@ -25,7 +27,7 @@ export const initialLikes = (state = initialState,action) =>{
             })
             return {
                 ...state,arrPhotos: changedArr
-            }
+            }*/
 
         default:
             return state

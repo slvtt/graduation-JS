@@ -12,7 +12,6 @@ const MainPublication = ({photosRes}) =>{
 
     const classes = useStyles();
 
-
     return photosRes.map((item,index) => (
             <Grid key={nanoid(10)}  style={{ height: 'auto !important' }} item xs={6} >
                     <div>

@@ -27,8 +27,10 @@ const unsplash = createApi({
 
 
 const photo = unsplash.photos.getRandom({count:10}).then(result =>{
+
     const responcePhotos = result.response
 
+    localStorage.setItem('response',JSON.stringify(responcePhotos))
 
     const linksUsers = responcePhotos.map(item => item.user.links.html)
     const arrUrls=responcePhotos.map(item => item.urls.regular)
@@ -37,24 +39,26 @@ const photo = unsplash.photos.getRandom({count:10}).then(result =>{
     const countLike = responcePhotos.map(item => item.likes)
     const photos_id = responcePhotos.map(item => item.id);
 
-    localStorage.setItem('response',JSON.stringify(responcePhotos))
-
+/*
     localStorage.setItem('userImg',JSON.stringify((profileImages)))
     localStorage.setItem('users_urls',JSON.stringify(linksUsers))
     localStorage.setItem('user_names',JSON.stringify(userNickName))
     localStorage.setItem('likes',JSON.stringify(countLike))
     localStorage.setItem('photos',JSON.stringify(arrUrls))
     localStorage.setItem('photos_id',JSON.stringify(photos_id))
+*/
 
 })
 
 function Main ({arrLike}) {
 
 
-    useEffect(()=>{
-        const arrayObj = localStorage.getItem('response')
+    useEffect(() => {
 
-        if(arrayObj) {
+        const arrayObj = localStorage.getItem('response');
+
+        if (arrayObj) {
+
             arrLike(JSON.parse(arrayObj))
         }
     },[])
