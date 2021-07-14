@@ -7,13 +7,14 @@ import defaultImgWhite from '../../../public/img/love_btn.png';
 import defaultImgRed from '../../../public/img/love_btn_active.png';
 
 import {likeClicked} from "../../../redux/actions/likeClick";
+import {removeLike} from "../../../redux/actions/removeLike";
 
 import {Switch, Link,BrowserRouter as Router,Route} from "react-router-dom";
 
 import BigImg from "../BigImg/bigImg";
 import {connect} from "react-redux";
 
-const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto}) => {
+const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,removeLike}) => {
 
     const defaultImg = defaultImgWhite;
 
@@ -35,7 +36,14 @@ const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto}) => {
                         Authorization:`Bearer ${token}`
                     }
                 })
-                    .then(res=> console.log(res))
+                    .then(res =>{
+                        const id = res.data.photo.id;
+                        const likes = res.data.photo.likes;
+
+                        likeClicked(likes,id);
+
+                        console.log(res);
+                    })
                     .catch(err=>console.log(err))
 
                 setFlag(!flag)
@@ -50,7 +58,12 @@ const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto}) => {
                     Authorization:`Bearer ${token}`
                 }
             })
-                .then(res => console.log(res))
+                .then(res => {
+                    const id = res.data.photo.id;
+                    const likes = res.data.photo.likes;
+
+                    removeLike(id,likes)
+                })
                 .catch(err => console.log(err))
 
             setFlag(!flag)
@@ -95,12 +108,8 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-
-    return {
-        addCountLike: (something) => dispatch({type:'LIKE',payload:something}),
-        removeCountLike:(something) => dispatch({type:'REMOVE_LIKE',payload:something})
-    }
+const mapDispatchToProps = {
+    likeClicked,
+    removeLike
 }
-
 export default connect(mapStateToProps,mapDispatchToProps)(LikeBtnGroup);
