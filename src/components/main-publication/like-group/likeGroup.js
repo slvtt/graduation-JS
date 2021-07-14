@@ -13,7 +13,7 @@ import {Switch, Link,BrowserRouter as Router,Route} from "react-router-dom";
 import BigImg from "../BigImg/bigImg";
 import {connect} from "react-redux";
 
-const LikeBtnGroup = ({photo,userNickName,userImg,id,countLike,addCountLike,removeCountLike}) => {
+const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto}) => {
 
     const defaultImg = defaultImgWhite;
 
@@ -21,12 +21,11 @@ const LikeBtnGroup = ({photo,userNickName,userImg,id,countLike,addCountLike,remo
 
     const [flag,setFlag] = useState(false);
 
-    const url = `https://api.unsplash.com/photos/${id}/like`;
+    const url = `https://api.unsplash.com/photos/${photoId}/like`;
 
     let token = JSON.parse(localStorage.getItem('token'));
 
     const likeClick = () => {
-
 
         if(!flag){
 
@@ -40,7 +39,7 @@ const LikeBtnGroup = ({photo,userNickName,userImg,id,countLike,addCountLike,remo
                     .catch(err=>console.log(err))
 
                 setFlag(!flag)
-                addCountLike(countLike + 1)
+
             } else {
                 alert('Похоже,что вы не авторизовались!')
             }
@@ -55,7 +54,6 @@ const LikeBtnGroup = ({photo,userNickName,userImg,id,countLike,addCountLike,remo
                 .catch(err => console.log(err))
 
             setFlag(!flag)
-            removeCountLike(countLike)
         }
 
 
@@ -66,7 +64,6 @@ const LikeBtnGroup = ({photo,userNickName,userImg,id,countLike,addCountLike,remo
     return(
         <Router>
             <section className="like-button-group">
-                <div>{countLike}</div>
                 <button
                     id = {nanoid()}
                     className=" btn"
@@ -81,8 +78,8 @@ const LikeBtnGroup = ({photo,userNickName,userImg,id,countLike,addCountLike,remo
                <Route exact path="/big-img">
                    <BigImg
                        history={history}
-                       photo={photo}
-                       userImg={userImg}
+                       photo={BigPhoto}
+                       userIcon={userIcon}
                        userNickName={userNickName}
                    />
                </Route>
@@ -94,7 +91,7 @@ const LikeBtnGroup = ({photo,userNickName,userImg,id,countLike,addCountLike,remo
 
 const mapStateToProps = (state) => {
     return {
-        counter:state.likeReducer
+        photosRes:state.initialLikes.arrPhotos
     }
 }
 

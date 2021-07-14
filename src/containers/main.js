@@ -37,6 +37,7 @@ const photo = unsplash.photos.getRandom({count:10}).then(result =>{
     const photos_id = responcePhotos.map(item => item.id);
 
     localStorage.setItem('response',JSON.stringify(responcePhotos))
+
     localStorage.setItem('userImg',JSON.stringify((profileImages)))
     localStorage.setItem('users_urls',JSON.stringify(linksUsers))
     localStorage.setItem('user_names',JSON.stringify(userNickName))
@@ -46,18 +47,8 @@ const photo = unsplash.photos.getRandom({count:10}).then(result =>{
 
 })
 
-const array = JSON.parse(window.localStorage.getItem('photos'));
-
-
-
 function Main ({arrLike}) {
 
-    const [photos,setPhotos] = useState([]);
-    const [links,setlinks] = useState([]);
-    const [profImg,setProfImg] = useState([]);
-    const [userNick,setUserNick] = useState([]);
-    const [photoLike,setPhotoLike] = useState([]);
-    const [identifiers,setIdentifiers] = useState([]);
 
     useEffect(()=>{
         const arrayObj = localStorage.getItem('response')
@@ -67,65 +58,11 @@ function Main ({arrLike}) {
         }
     },[])
 
-    useEffect(()=>{
-        const raw = localStorage.getItem('photos')
-        
-        if(raw){
-            setPhotos(JSON.parse(raw))
-        }
-        
-    },[]);
-
-    useEffect(() => {
-
-        const arrLinks = localStorage.getItem('users_urls');
-
-        if(arrLinks) setlinks(JSON.parse(arrLinks))
-    },[]);
-
-    useEffect(() => {
-
-        const arrProfImg = localStorage.getItem('userImg');
-
-        if(arrProfImg) setProfImg(JSON.parse(arrProfImg))
-    },[])
-
-    useEffect(()=>{
-
-        const userNicks = localStorage.getItem('user_names')
-
-        if (userNicks) setUserNick(JSON.parse(userNicks))
-    },[])
-
-    useEffect(()=>{
-        const userLikes = localStorage.getItem('likes')
-
-        if (userLikes){
-            setPhotoLike(JSON.parse(userLikes))
-        }
-    },[])
-
-    useEffect(()=>{
-        const photos_id = localStorage.getItem('photos_id')
-
-        if (photos_id) {
-            setIdentifiers(JSON.parse(photos_id))
-        }
-    },[])
-
     return(
             <main>
                 <Container style={{marginTop:'40px'}} >
                     <Grid container spacing={10}>
-                        <MainPublication
-                            userNickName = {userNick}
-                            userImg = {profImg}
-                            countLike = {photoLike}
-                            setLikes={setPhotoLike}
-                            imgSrc = {photos}
-                            userLinks = {links}
-                            id = {identifiers}
-                        />
+                        <MainPublication />
                     </Grid>
                 </Container>
             </main>
@@ -135,7 +72,7 @@ function Main ({arrLike}) {
 
 const mapStateToProps = (state) => {
     return {
-        photosRes:state.initialLikes
+        photosRes:state.initialLikes.arrPhotos
     }
 }
 

@@ -4,33 +4,36 @@ import classNames from 'classnames';
 import {makeStyles} from '@material-ui/core/styles';
 import LikeBtnGroup from './like-group/likeGroup';
 
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid';
 
-const MainPublication = ({imgSrc,userLinks,userImg,userNickName,countLike,id}) =>{
-    const userNick = userNickName
+import {connect} from "react-redux";
+
+const MainPublication = ({photosRes}) =>{
+
     const classes = useStyles();
 
-    return imgSrc.map((item,index) =>(
+
+    return photosRes.map((item,index) => (
             <Grid key={nanoid(10)}  style={{ height: 'auto !important' }} item xs={6} >
                     <div>
                         <div className="header-img-block">
-                            <Avatar src={userImg[index]}></Avatar>
+                            <Avatar src={item.user.profile_image.small}></Avatar>
                             <Box className={classNames(classes.colorBlack,classes.nickName,classes.nickNameMain)}  component="span">
-                                <a href={userLinks[index]}>{userNickName[index]}</a>
+                                <a href={item.user.links.html}>{item.user.username}</a>
                             </Box>
                         </div>
                         <div className="main-img">
-                            <img src={item}/> 
+                            <img src={item.urls.regular}/>
                         </div>
 
                         <div className="main-img_like">
-                            <span className="like-counter">Нравится:{countLike[index]}</span>
+
+                            <span className="like-counter">Нравится:{item.likes}</span>
                             <LikeBtnGroup
-                                photo={item}
-                                userNickName={userNick[index]}
-                                userImg={userImg[index]}
-                                countLike={countLike[index]}
-                                id = {id[index]}
+                                BigPhoto={item.urls.raw}
+                                photoId = {item.id}
+                                userNickName={item.user.username}
+                                userIcon={item.user.profile_image.small}
                             />
                         </div>
                     </div>
@@ -55,5 +58,11 @@ const useStyles = makeStyles({
         margin:'0 0 0 20px',
     }
 })
+const mapStateToProps = (state) => {
 
-export default MainPublication;
+    return {
+        photosRes:state.initialLikes.arrPhotos
+    }
+}
+
+export default connect (mapStateToProps,null)(MainPublication);

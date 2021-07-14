@@ -21,7 +21,7 @@ const Auth = ({history,authAction,getToken}) =>  {
     }).then(res => res.json())
         .then(res => {
 
-            if (res.access_token){
+            if (res.access_token) {
 
                 localStorage.setItem('token', JSON.stringify(res.access_token))
                 getToken(res.access_token)
