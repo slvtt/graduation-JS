@@ -1,4 +1,5 @@
 import { LIKE} from "../types";
+import {REMOVE_LIKE} from "../types";
 
 export const likeClicked = (countLike,id) => {
     return {
@@ -9,3 +10,14 @@ export const likeClicked = (countLike,id) => {
         },
     }
 }
+
+export const removeLike = (countLike,id) => {
+    return {
+        type:REMOVE_LIKE,
+        payload:{
+            id:id,
+            like: countLike
+        }
+    }
+}
+

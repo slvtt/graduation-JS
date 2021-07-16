@@ -6,8 +6,8 @@ import axios from "axios";
 import defaultImgWhite from '../../../public/img/love_btn.png';
 import defaultImgRed from '../../../public/img/love_btn_active.png';
 
-import {likeClicked} from "../../../redux/actions/likeClick";
-import {removeLike} from "../../../redux/actions/removeLike";
+import {likeClicked,removeLike} from "../../../redux/actions/likeClick";
+
 
 import {Switch, Link,BrowserRouter as Router,Route} from "react-router-dom";
 

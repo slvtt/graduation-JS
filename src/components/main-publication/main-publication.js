@@ -13,6 +13,7 @@ const MainPublication = ({photosRes}) =>{
     const classes = useStyles();
 
     return photosRes.map((item,index) => (
+
             <Grid key={nanoid(10)}  style={{ height: 'auto !important' }} item xs={6} >
                     <div>
                         <div className="header-img-block">
@@ -21,6 +22,7 @@ const MainPublication = ({photosRes}) =>{
                                 <a href={item.user.links.html}>{item.user.username}</a>
                             </Box>
                         </div>
+
                         <div className="main-img">
                             <img src={item.urls.regular}/>
                         </div>

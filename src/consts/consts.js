@@ -3,4 +3,4 @@ export const redirect_url = 'urn:ietf:wg:oauth:2.0:oob',
     secret = 'vlJy_e3ElNhZFQntKWkm653HgKv0JpU1dj1Ln7NOB64',
     grant_type = 'authorization_code',
     url = 'https://unsplash.com/oauth/token',
-    code = `d32ZEbQwRJycy5utLs7Pg7zJ_1pO8l1pTKzq5SDZ4Go`;
+    code = `icGNIL2O9pTu9WbrBjhn3d50DUqYYzt3fOx9_R5pzx4 `;
