@@ -14,13 +14,11 @@ import {Switch, Link,BrowserRouter as Router,Route} from "react-router-dom";
 import BigImg from "../BigImg/bigImg";
 import {connect} from "react-redux";
 
-const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,removeLike}) => {
+const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,removeLike,isLiked}) => {
 
     const defaultImg = defaultImgWhite;
 
     const defaultImgActive = defaultImgRed;
-
-    const [flag,setFlag] = useState(false);
 
     const url = `https://api.unsplash.com/photos/${photoId}/like`;
 
@@ -28,7 +26,7 @@ const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,remove
 
     const likeClick = () => {
 
-        if(!flag){
+        if(!isLiked){
 
             if (token) {
                 axios.post(url,null,{
@@ -39,14 +37,13 @@ const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,remove
                     .then(res =>{
                         const id = res.data.photo.id;
                         const likes = res.data.photo.likes;
+                        const isLike = res.data.photo.liked_by_user;
 
-                        likeClicked(likes,id);
+                        likeClicked(likes,id,isLike);
 
                         console.log(res);
                     })
                     .catch(err=>console.log(err))
-
-                setFlag(!flag)
 
             } else {
                 alert('Похоже,что вы не авторизовались!')
@@ -59,14 +56,15 @@ const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,remove
                 }
             })
                 .then(res => {
+
                     const id = res.data.photo.id;
                     const likes = res.data.photo.likes;
+                    const isLike = res.data.photo.liked_by_user;
 
-                    removeLike(id,likes)
+                    console.log(res)
+                    removeLike(likes,id,isLike)
                 })
                 .catch(err => console.log(err))
-
-            setFlag(!flag)
         }
 
 
@@ -82,7 +80,7 @@ const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,remove
                     className=" btn"
                     onClick = {likeClick}
                 >
-                    <img src={flag === true? defaultImgActive  : defaultImg } />
+                    <img src={isLiked === true? defaultImgActive  : defaultImg } />
                 </button>
                <Link className="magnifier btn" to="/big-img"></Link>
             </section>

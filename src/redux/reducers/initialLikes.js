@@ -18,12 +18,12 @@ export const initialLikes = (state = initialState,action) =>{
 
             const currentLike = action.payload.like;
             const currentId = action.payload.id;
-
+            const isLike = action.payload.isLike;
             let changedArr = state.arrPhotos.map((item) => {
 
                 if (item.id === currentId){
-                    item.likes = currentLike
-                    console.log(item.id)
+                    item.likes = currentLike;
+                    item.liked_by_user = isLike
                     return item
                 }
                 return item
@@ -37,12 +37,13 @@ export const initialLikes = (state = initialState,action) =>{
 
             const removedLike = action.payload.like;
             const removeId = action.payload.id;
+            const removedFlag = action.payload.isLike
 
             let removedLikeArr = state.arrPhotos.map(item => {
 
                 if (item.id === removeId) {
-                    item.likes = removedLike
-
+                    item.likes = removedLike;
+                    item.liked_by_user = removedFlag;
                     console.log(item.id);
                     return item
                 }

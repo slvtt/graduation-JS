@@ -35,6 +35,7 @@ const MainPublication = ({photosRes}) =>{
                                 photoId = {item.id}
                                 userNickName={item.user.username}
                                 userIcon={item.user.profile_image.small}
+                                isLiked={item.liked_by_user}
                             />
                         </div>
                     </div>
