@@ -17,7 +17,7 @@ let conf = {
     },
     output: {
         filename: `./js/${filename('js')}`,
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'build'),
     },
     context:path.resolve(__dirname, 'src'),
     

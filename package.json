@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cross-env NODE_ENV=development webpack serve",
+    "start": "node server.js",
     "build": "cross-env NODE_ENV=production webpack"
   },
   "repository": {
@@ -54,6 +54,8 @@
     "css-loader": "^5.2.4",
     "dotenv": "^10.0.0",
     "dotenv-webpack": "^7.0.3",
+    "express": "^4.17.1",
+    "express-favicon": "^2.0.1",
     "file-loader": "^6.2.0",
     "html-loader": "^2.1.2",
     "html-webpack-plugin": "^5.3.1",
