@@ -9,7 +9,7 @@ const isDev = mode === 'development';
 
 const filename = ext => isDev ?
     `[name].${ext}` :
-    `[name].[fullhash].${ext}`;
+    `[name].[contenthash].${ext}`;
 
 let conf = {
     entry: {
