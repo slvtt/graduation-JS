@@ -32,22 +32,6 @@ const photo = unsplash.photos.getRandom({count:10}).then(result =>{
 
     localStorage.setItem('response',JSON.stringify(responcePhotos))
 
-    const linksUsers = responcePhotos.map(item => item.user.links.html)
-    const arrUrls=responcePhotos.map(item => item.urls.regular)
-    const profileImages= responcePhotos.map(item => item.user.profile_image.small)
-    const userNickName = responcePhotos.map(item => item.user.username)
-    const countLike = responcePhotos.map(item => item.likes)
-    const photos_id = responcePhotos.map(item => item.id);
-
-/*
-    localStorage.setItem('userImg',JSON.stringify((profileImages)))
-    localStorage.setItem('users_urls',JSON.stringify(linksUsers))
-    localStorage.setItem('user_names',JSON.stringify(userNickName))
-    localStorage.setItem('likes',JSON.stringify(countLike))
-    localStorage.setItem('photos',JSON.stringify(arrUrls))
-    localStorage.setItem('photos_id',JSON.stringify(photos_id))
-*/
-
 })
 
 function Main ({arrLike}) {

@@ -15,22 +15,30 @@ const Auth = ({history,authAction,getToken}) =>  {
     const [isAuthen,setIsAuthen] = useState(false);
 
     useEffect(()=>{
-
-    fetch (`https://unsplash.com/oauth/token?client_id=${accessKey}&client_secret=${secret}&redirect_uri=${redirect_url}&code=${code}&grant_type=authorization_code`,{
-        method:'POST',
-    }).then(res => res.json())
-        .then(res => {
-
-            if (res.access_token) {
-
-                localStorage.setItem('token', JSON.stringify(res.access_token))
-                getToken(res.access_token)
-                authAction()
-                setIsAuthen(!isAuthen);
-            }
-
+        fetch(`https://unsplash.com/oauth/authorize?client_id=${accessKey}&redirect_uri=${redirect_url}&response_type=code&scope=public+read_user+write_likes`,{
+            mode:"no-cors"
         })
-},[])
+            .then(res => console.log(res))
+
+    },[])
+
+//     useEffect(()=>{
+//
+//     fetch (`https://unsplash.com/oauth/token?client_id=${accessKey}&client_secret=${secret}&redirect_uri=${redirect_url}&code=${code}&grant_type=authorization_code`,{
+//         method:'POST',
+//     }).then(res => res.json())
+//         .then(res => {
+//
+//             if (res.access_token) {
+//
+//                 localStorage.setItem('token', JSON.stringify(res.access_token))
+//                 getToken(res.access_token)
+//                 authAction()
+//                 setIsAuthen(!isAuthen);
+//             }
+//
+//         })
+// },[])
 
     return(
         <div className="modal-overlay">
