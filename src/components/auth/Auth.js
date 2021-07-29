@@ -19,6 +19,8 @@ const Auth = ({history,authAction,getToken}) =>  {
         window.location.replace(`https://unsplash.com/oauth/authorize?client_id=${accessKey}&redirect_uri=${redirect_url}&response_type=code&scope=publi
 c+read_user+write_likes`)
 
+        console.log(window.location.code)
+
     },[])
 
 //     useEffect(()=>{
