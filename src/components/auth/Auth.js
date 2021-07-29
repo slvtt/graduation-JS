@@ -15,10 +15,9 @@ const Auth = ({history,authAction,getToken}) =>  {
     const [isAuthen,setIsAuthen] = useState(false);
 
     useEffect(()=>{
-        fetch(`https://unsplash.com/oauth/authorize?client_id=${accessKey}&redirect_uri=${redirect_url}&response_type=code&scope=public+read_user+write_likes`,{
-            mode:"no-cors"
-        })
-            .then(res => console.log(res))
+
+        window.location.replace(`https://unsplash.com/oauth/authorize?client_id=${accessKey}&redirect_uri=${redirect_url}&response_type=code&scope=publi
+c+read_user+write_likes`)
 
     },[])
 
@@ -100,5 +99,6 @@ const mapDispatchToProps = {
     authAction,
     getToken
 }
+
 
 export default connect (mapStateToProps,mapDispatchToProps)(Auth)
