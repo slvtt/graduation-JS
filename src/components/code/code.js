@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 
 import './index.css'
 
-import {accessKey, code, redirect_url, secret} from '../../consts/consts';
+import {accessKey, redirect_url, secret} from '../../consts/consts';
 
 import {connect} from "react-redux";
 import {authAction} from '../../redux/actions/authAction';
@@ -10,36 +10,37 @@ import {getToken} from "../../redux/actions/tokenAction";
 import {Button, CircularProgress} from "@material-ui/core";
 import MoodIcon from '@material-ui/icons/Mood';
 
-const Coden = ({history,authAction,getToken}) =>  {
+const Coden = ({history, authAction, getToken}) => {
 
-    const [isAuthen,setIsAuthen] = useState(false);
+    const [isAuthen, setIsAuthen] = useState(false);
 
     let code = null;
 
-    useEffect(() =>{
+    useEffect(() => {
         code = window.location.search.substr(6)
         console.log(code);
-    },[])
 
-//     useEffect(()=>{
-//
-//     fetch (`https://unsplash.com/oauth/token?client_id=${accessKey}&client_secret=${secret}&redirect_uri=${redirect_url}&code=${code}&grant_type=authorization_code`,{
-//         method:'POST',
-//     }).then(res => res.json())
-//         .then(res => {
-//
-//             if (res.access_token) {
-//
-//                 localStorage.setItem('token', JSON.stringify(res.access_token))
-//                 getToken(res.access_token)
-//                 authAction()
-//                 setIsAuthen(!isAuthen);
-//             }
-//
-//         })
-// },[])
+        if (code) {
+            fetch(`https://unsplash.com/oauth/token?client_id=${accessKey}&client_secret=${secret}&redirect_uri=${redirect_url}&code=${code}&grant_type=authorization_code`, {
+                method: 'POST',
+            }).then(res => res.json())
+                .then(res => {
 
-    return(
+                    if (res.access_token) {
+
+                        localStorage.setItem('token', JSON.stringify(res.access_token))
+                        getToken(res.access_token)
+                        authAction()
+                        setIsAuthen(!isAuthen);
+                    }
+
+                })
+        } else {
+            alert('Что-то на сервере пошло не так! Просим свои извинения!')
+        }
+    }, [])
+
+    return (
         <div className="modal-overlay">
             <div className="modal">
                 <div className="modal-guts">
@@ -47,32 +48,36 @@ const Coden = ({history,authAction,getToken}) =>  {
                         {
                             !isAuthen ?
                                 <>
-                                    <h3 className="modal-title_auth">Сейчас идет процесс авторизации, подождите пару секунд...</h3>
-                                    <CircularProgress color="secondary" />
+                                    <h3 className="modal-title_auth">Сейчас идет процесс авторизации, подождите пару
+                                        секунд...</h3>
+                                    <CircularProgress color="secondary"/>
                                     {/*<button onClick={() => authAction() }>Авторизация</button>*/}
                                     <Button
                                         className="modal_back-btn"
                                         variant="outlined"
-                                        onClick={()=> history.goBack()}
+                                        onClick={() => history.goBack()}
                                     >
                                         Назад
 
                                     </Button>
 
-                                    <a href={`https://unsplash.com/oauth/authorize?client_id=${accessKey}&redirect_uri=${redirect_url}&response_type=code&scope=public+read_user+write_likes`}>Ссылка на получение кода</a>
+                                    <a href={`https://unsplash.com/oauth/authorize?client_id=${accessKey}&redirect_uri=${redirect_url}&response_type=code&scope=public+read_user+write_likes`}>Ссылка
+                                        на получение кода</a>
                                 </>
                                 :
                                 <>
-                                    <h3 className="modal-title_auth-completed">Ура, Вы авторизовались! Теперь вы можете просматривать фотографии!
+                                    <h3 className="modal-title_auth-completed">Ура, Вы авторизовались! Теперь вы можете
+                                        просматривать фотографии!
                                         <MoodIcon/>
                                     </h3>
 
-                                    <p className="modal_auth-completed_text">Нажмите кнопку "Назад", чтобы просматривать фотографии</p>
+                                    <p className="modal_auth-completed_text">Нажмите кнопку "Назад", чтобы просматривать
+                                        фотографии</p>
 
                                     <Button
                                         className="modal_back-btn"
                                         variant="outlined"
-                                        onClick={()=> history.goBack()}
+                                        onClick={() => history.goBack()}
                                     >
                                         Назад
                                     </Button>
@@ -101,4 +106,4 @@ const mapDispatchToProps = {
 }
 
 
-export default connect (mapStateToProps,mapDispatchToProps)(Coden)
+export default connect(mapStateToProps, mapDispatchToProps)(Coden)
