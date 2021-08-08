@@ -21,6 +21,7 @@ import {
     Route,
     Link, useHistory
 } from "react-router-dom";
+import Coden from "../components/code/code";
 
 
 function Header({authState}) {
@@ -58,6 +59,9 @@ function Header({authState}) {
                     <Auth
                         history={history}
                     />
+                </Route>
+                <Route exact path = "/coden">
+                    <Coden history={history} />
                 </Route>
                 <Redirect to="/" />
 
