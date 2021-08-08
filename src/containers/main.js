@@ -26,26 +26,44 @@ const unsplash = createApi({
 });
 
 
-const photo = unsplash.photos.getRandom({count:10}).then(result =>{
-
-    const responcePhotos = result.response
-
-    localStorage.setItem('response',JSON.stringify(responcePhotos))
-
-})
-
 function Main ({arrLike}) {
 
+    let photo = null;
 
-    useEffect(() => {
+    const [fetching,setFetching] = useState(true);
+    const [currentPhotos, setCurrentPhotos] = useState(10);
 
-        const arrayObj = localStorage.getItem('response');
+    const scrollHandler = (e) => {
+        if(e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100 ) {
+            console.log('scroll')
+            setFetching(true)
+        }
+    }
 
-        if (arrayObj) {
+    useEffect(()=>{
 
-            arrLike(JSON.parse(arrayObj))
+        if (fetching) {
+
+            photo = unsplash.photos.getRandom({count:currentPhotos}).then(result =>{
+                if(result) {
+                    arrLike(result.response)
+                    setCurrentPhotos(prevState => prevState + 1)
+                }
+            })
+                .finally(()=> setFetching(false))
+        }
+
+    },[fetching])
+
+
+
+    useEffect(()=>{
+        document.addEventListener('scroll',scrollHandler)
+        return function (){
+            document.removeEventListener('scroll',scrollHandler)
         }
     },[])
+
 
     return(
             <main>
