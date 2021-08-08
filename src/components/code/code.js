@@ -12,7 +12,12 @@ import MoodIcon from '@material-ui/icons/Mood';
 
 const Coden = ({history,authAction,getToken}) =>  {
 
-    const [isAuthen,setIsAuthen] = useState(false);
+    let code = null;
+
+    useEffect(() =>{
+        code = window.location.search.substr(6)
+        console.log(code);
+    },[])
 
 //     useEffect(()=>{
 //
