@@ -14,7 +14,7 @@ const MainPublication = ({photosRes}) =>{
 
     return photosRes.map((item,index) => (
 
-            <Grid key={nanoid(10)}  style={{ height: 'auto !important' }} item xs={6} >
+            <Grid key={nanoid(10)}  style={{ height: 'auto !important' }} item xs={4} >
                     <div>
                         <div className="header-img-block">
                             <Avatar src={item.user.profile_image.small}></Avatar>

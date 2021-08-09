@@ -85,7 +85,6 @@ const Coden = ({history, authAction, getToken}) => {
                         }
 
                     </div>
-
                 </div>
             </div>
         </div>

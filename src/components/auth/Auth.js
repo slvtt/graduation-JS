@@ -23,24 +23,6 @@ c+read_user+write_likes`)
 
     },[])
 
-//     useEffect(()=>{
-//
-//     fetch (`https://unsplash.com/oauth/token?client_id=${accessKey}&client_secret=${secret}&redirect_uri=${redirect_url}&code=${code}&grant_type=authorization_code`,{
-//         method:'POST',
-//     }).then(res => res.json())
-//         .then(res => {
-//
-//             if (res.access_token) {
-//
-//                 localStorage.setItem('token', JSON.stringify(res.access_token))
-//                 getToken(res.access_token)
-//                 authAction()
-//                 setIsAuthen(!isAuthen);
-//             }
-//
-//         })
-// },[])
-
     return(
         <div className="modal-overlay">
             <div className="modal">
@@ -51,7 +33,6 @@ c+read_user+write_likes`)
                                 <>
                                     <h3 className="modal-title_auth">Сейчас идет процесс авторизации, подождите пару секунд...</h3>
                                     <CircularProgress color="secondary" />
-                                    {/*<button onClick={() => authAction() }>Авторизация</button>*/}
                                     <Button
                                         className="modal_back-btn"
                                         variant="outlined"

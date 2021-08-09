@@ -14,7 +14,6 @@ import {connect} from "react-redux";
 
 import {arrLike} from "../redux/actions/arrLikeAction";
 
-
 const unsplash = createApi({
     accessKey:accessKey,
 
@@ -64,8 +63,6 @@ function Main ({arrLike,photosRes}) {
 
 
     },[fetching])
-
-
 
     useEffect(()=>{
         document.addEventListener('scroll',scrollHandler)
