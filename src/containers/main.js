@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+
 import { Container,Grid } from '@material-ui/core';
 
 import nodeFetch from 'node-fetch';
+
 import { createApi } from 'unsplash-js';
 
 import {accessKey,redirect_url,secret} from '../consts/consts'
@@ -12,7 +14,6 @@ import {connect} from "react-redux";
 
 import {arrLike} from "../redux/actions/arrLikeAction";
 
-import {initialLikes} from "../redux/reducers/initialLikes";
 
 const unsplash = createApi({
     accessKey:accessKey,
@@ -26,7 +27,7 @@ const unsplash = createApi({
 });
 
 
-function Main ({arrLike}) {
+function Main ({arrLike,photosRes}) {
 
     let photo = null;
 
@@ -44,14 +45,23 @@ function Main ({arrLike}) {
 
         if (fetching) {
 
-            photo = unsplash.photos.getRandom({count:currentPhotos}).then(result =>{
-                if(result) {
-                    arrLike(result.response)
-                    setCurrentPhotos(prevState => prevState + 1)
+                if (currentPhotos < 30){
+
+                    photo = unsplash.photos.getRandom({count:currentPhotos}).then(result => {
+
+                        if (result) {
+
+                            arrLike([...photosRes, ...result.response])
+                            setCurrentPhotos(prevState => prevState + 1)
+
+                        }
+                    })
+                        .catch(() => alert('Приложение временно не работает. Зайдите чуть попозже'))
+                        .finally(() => setFetching(false))
                 }
-            })
-                .finally(()=> setFetching(false))
-        }
+            }
+
+
 
     },[fetching])
 
