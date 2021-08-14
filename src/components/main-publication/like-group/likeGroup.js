@@ -82,11 +82,11 @@ const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,remove
                 >
                     <img src={isLiked === true? defaultImgActive  : defaultImg } />
                 </button>
-               <Link className="magnifier btn" to="/big-img"></Link>
+               <Link className="magnifier btn" to={`/big-img/photo-Id=${photoId}`}></Link>
             </section>
 
             <Switch>
-               <Route exact path="/big-img">
+               <Route  path="/big-img">
                    <BigImg
                        name={photoId}
                        history={history}
