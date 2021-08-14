@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import {useHistory} from "react-router-dom";
 import axios from "axios";
 
+
 import defaultImgWhite from '../../../public/img/love_btn.png';
 import defaultImgRed from '../../../public/img/love_btn_active.png';
 
@@ -13,6 +14,8 @@ import {Switch, Link,BrowserRouter as Router,Route} from "react-router-dom";
 
 import BigImg from "../BigImg/bigImg";
 import {connect} from "react-redux";
+
+import Slider from '../../slider/Slider'
 
 const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,removeLike,isLiked}) => {
 
@@ -86,7 +89,7 @@ const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,remove
             </section>
 
             <Switch>
-               <Route  path="/big-img">
+               <Route path="/big-img">
                    <BigImg
                        name={photoId}
                        history={history}
@@ -96,6 +99,10 @@ const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,remove
                        userNickName={userNickName}
                        isLike={isLiked}
                    />
+               </Route>
+
+               <Route exact path = "/slider">
+                   <Slider />
                </Route>
             </Switch>
         </Router>
