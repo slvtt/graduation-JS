@@ -1,16 +1,20 @@
 import React from 'react';
 
+import './index.css'
+
 const Slider = () => {
 
     return (
+
         <div className = "modal-overlay">
-            <div className ="modal">
-                <div className ="modal-guts">
-                    <div className ="container">
-                        <p>Это будущий слайдер</p>
-                    </div>
+            
+                <div>
+                    <p>Slider</p>
                 </div>
-            </div>
+
+            <div className="close"></div>
+            <div className="slider-btn btn-left"></div>
+            <div className ="slider-btn btn-right"></div>
         </div>
     )
 }

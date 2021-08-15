@@ -86,6 +86,7 @@ const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,remove
                     <img src={isLiked === true? defaultImgActive  : defaultImg } />
                 </button>
                <Link className="magnifier btn" to={`/big-img/photo-Id=${photoId}`}></Link>
+               <Link className ="second-btn" to="/slider">Слайдер</Link>
             </section>
 
             <Switch>
@@ -101,7 +102,7 @@ const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,remove
                    />
                </Route>
 
-               <Route exact path = "/slider">
+               <Route path = "/slider">
                    <Slider />
                </Route>
             </Switch>
@@ -120,4 +121,5 @@ const mapDispatchToProps = {
     likeClicked,
     removeLike
 }
+
 export default connect(mapStateToProps,mapDispatchToProps)(LikeBtnGroup);
