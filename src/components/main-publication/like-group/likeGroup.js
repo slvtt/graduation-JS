@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import {useHistory} from "react-router-dom";
 import axios from "axios";
 
+
 import defaultImgWhite from '../../../public/img/love_btn.png';
 import defaultImgRed from '../../../public/img/love_btn_active.png';
 
@@ -13,6 +14,8 @@ import {Switch, Link,BrowserRouter as Router,Route} from "react-router-dom";
 
 import BigImg from "../BigImg/bigImg";
 import {connect} from "react-redux";
+
+import Slider from '../../slider/Slider'
 
 const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,removeLike,isLiked}) => {
 
@@ -82,7 +85,8 @@ const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,remove
                 >
                     <img src={isLiked === true? defaultImgActive  : defaultImg } />
                 </button>
-               <Link className="magnifier btn" to="/big-img"></Link>
+               <Link className="magnifier btn" to={`/big-img/photo-Id=${photoId}`}></Link>
+               <Link className ="second-btn" to="/slider">Слайдер</Link>
             </section>
 
             <Switch>
@@ -98,6 +102,10 @@ const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,remove
                    />
 
 
+               </Route>
+
+               <Route path = "/slider">
+                   <Slider />
                </Route>
             </Switch>
 
@@ -116,4 +124,5 @@ const mapDispatchToProps = {
     likeClicked,
     removeLike
 }
+
 export default connect(mapStateToProps,mapDispatchToProps)(LikeBtnGroup);
