@@ -86,7 +86,7 @@ const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,remove
             </section>
 
             <Switch>
-               <Route exact path="/big-img">
+               <Route path="/big-img">
                    <BigImg
                        name={photoId}
                        history={history}
@@ -96,8 +96,11 @@ const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,remove
                        userNickName={userNickName}
                        isLike={isLiked}
                    />
+
+
                </Route>
             </Switch>
+
         </Router>
 
     )
