@@ -15,18 +15,19 @@ import {Switch, Link,BrowserRouter as Router,Route} from "react-router-dom";
 import BigImg from "../BigImg/bigImg";
 import {connect} from "react-redux";
 
-import Slider from '../../slider/Slider'
+import Slider from "./slider/Slider";
 
 const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,removeLike,isLiked}) => {
 
     const defaultImg = defaultImgWhite;
-
     const defaultImgActive = defaultImgRed;
-
+    const [modalActive,modalSetActive] = useState(false)
     const url = `https://api.unsplash.com/photos/${photoId}/like`;
-
     let token = JSON.parse(localStorage.getItem('token'));
 
+    const handleClickSlider = () => {
+        modalSetActive(!modalActive)
+    }
     const likeClick = () => {
 
         if(!isLiked){
@@ -72,11 +73,9 @@ const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,remove
 
 
     }
-
     const history = useHistory();
 
     return(
-        <Router>
             <section className="like-button-group">
                 <button
                     id = {nanoid()}
@@ -85,31 +84,10 @@ const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,remove
                 >
                     <img src={isLiked === true? defaultImgActive  : defaultImg } />
                 </button>
-               <Link className="magnifier btn" to={`/big-img/photo-Id=${photoId}`}></Link>
-               <Link className ="second-btn" to="/slider">Слайдер</Link>
+               <button className="magnifier btn" onClick={handleClickSlider}></button>
+                <Slider active={modalActive} setActive={modalSetActive} photo={BigPhoto} />
             </section>
 
-            <Switch>
-               <Route path="/big-img">
-                   <BigImg
-                       name={photoId}
-                       history={history}
-                       photo={BigPhoto}
-                       userIcon={userIcon}
-                       photoId={photoId}
-                       userNickName={userNickName}
-                       isLike={isLiked}
-                   />
-
-
-               </Route>
-
-               <Route path = "/slider">
-                   <Slider />
-               </Route>
-            </Switch>
-
-        </Router>
 
     )
 }

@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from 'react';
-
 import { Container,Grid } from '@material-ui/core';
-
 import nodeFetch from 'node-fetch';
-
 import { createApi } from 'unsplash-js';
-
 import {accessKey,redirect_url,secret} from '../consts/consts'
-
 import MainPublication from '../components/main-publication/main-publication';
-
 import {connect} from "react-redux";
-
 import {arrLike} from "../redux/actions/arrLikeAction";
+import Slider from "../components/main-publication/like-group/slider/Slider";
 
 const unsplash = createApi({
     accessKey:accessKey,
@@ -30,6 +24,7 @@ function Main ({arrLike,photosRes}) {
 
     let photo = null;
 
+    const [modalActive,modalSetActive] = useState(false)
     const [fetching,setFetching] = useState(true);
     const [currentPhotos, setCurrentPhotos] = useState(10);
 
@@ -63,7 +58,6 @@ function Main ({arrLike,photosRes}) {
 
 
     },[fetching])
-
     useEffect(()=>{
         document.addEventListener('scroll',scrollHandler)
         return function (){
@@ -71,20 +65,22 @@ function Main ({arrLike,photosRes}) {
         }
     },[])
 
-
     return(
             <main>
+
                 <Container style={{marginTop:'40px'}} >
                     <Grid container spacing={10}>
                         <MainPublication />
                     </Grid>
                 </Container>
+                <Slider active={modalActive} setActive={modalSetActive}></Slider>
             </main>
 
     )
 }
 
 const mapStateToProps = (state) => {
+
     return {
         photosRes:state.initialLikes.arrPhotos
     }
