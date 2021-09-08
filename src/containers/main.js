@@ -7,6 +7,7 @@ import MainPublication from '../components/main-publication/main-publication';
 import {connect} from "react-redux";
 import {arrLike} from "../redux/actions/arrLikeAction";
 import Slider from "../components/main-publication/like-group/slider/Slider";
+import {nanoid} from "nanoid";
 
 const unsplash = createApi({
     accessKey:accessKey,
@@ -19,11 +20,9 @@ const unsplash = createApi({
 
 });
 
-
 function Main ({arrLike,photosRes}) {
 
     let photo = null;
-
     const [modalActive,modalSetActive] = useState(false)
     const [fetching,setFetching] = useState(true);
     const [currentPhotos, setCurrentPhotos] = useState(10);
@@ -38,16 +37,11 @@ function Main ({arrLike,photosRes}) {
     useEffect(()=>{
 
         if (fetching) {
-
                 if (currentPhotos < 30){
-
                     photo = unsplash.photos.getRandom({count:currentPhotos}).then(result => {
-
                         if (result) {
-
                             arrLike([...photosRes, ...result.response])
                             setCurrentPhotos(prevState => prevState + 1)
-
                         }
                     })
                         .catch(() => alert('Приложение временно не работает. Зайдите чуть попозже'))
@@ -70,10 +64,10 @@ function Main ({arrLike,photosRes}) {
 
                 <Container style={{marginTop:'40px'}} >
                     <Grid container spacing={10}>
-                        <MainPublication />
+                        <MainPublication key={nanoid(4)} />
                     </Grid>
+                    <Slider photos={photosRes} setActive={modalSetActive}/>
                 </Container>
-                <Slider active={modalActive} setActive={modalSetActive}></Slider>
             </main>
 
     )

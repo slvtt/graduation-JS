@@ -9,8 +9,9 @@ import { nanoid } from 'nanoid';
 import {connect} from "react-redux";
 
 import Slider from "./like-group/slider/Slider";
+import {hideSlider, showSlider} from "../../redux/actions/slider";
 
-const MainPublication = ({photosRes}) =>{
+const MainPublication = ({photosRes,showSlider}) =>{
     const classes = useStyles();
     return photosRes.map((item,index) => (
         <>
@@ -23,7 +24,7 @@ const MainPublication = ({photosRes}) =>{
                         </Box>
                     </div>
 
-                    <div className="main-img">
+                    <div onClick={()=>showSlider(item.id)} className="main-img">
                         <img src={item.urls.regular}/>
                     </div>
 
@@ -70,5 +71,10 @@ const mapStateToProps = (state) => {
     }
 }
 
+const mapDispatchToProps = {
+  showSlider,
+    hideSlider
+}
 
-export default connect (mapStateToProps,null)(MainPublication);
+
+export default connect (mapStateToProps,mapDispatchToProps)(MainPublication);

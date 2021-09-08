@@ -2,31 +2,23 @@ import { nanoid } from 'nanoid';
 import React, { useState } from 'react';
 import {useHistory} from "react-router-dom";
 import axios from "axios";
-
+import {connect} from "react-redux";
 
 import defaultImgWhite from '../../../public/img/love_btn.png';
 import defaultImgRed from '../../../public/img/love_btn_active.png';
-
 import {likeClicked,removeLike} from "../../../redux/actions/likeClick";
-
-
-import {Switch, Link,BrowserRouter as Router,Route} from "react-router-dom";
-
-import BigImg from "../BigImg/bigImg";
-import {connect} from "react-redux";
-
 import Slider from "./slider/Slider";
+import {showSlider} from "../../../redux/actions/slider";
 
-const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,removeLike,isLiked}) => {
+const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,removeLike,isLiked,showSlider}) => {
 
     const defaultImg = defaultImgWhite;
     const defaultImgActive = defaultImgRed;
-    const [modalActive,modalSetActive] = useState(false)
     const url = `https://api.unsplash.com/photos/${photoId}/like`;
     let token = JSON.parse(localStorage.getItem('token'));
 
     const handleClickSlider = () => {
-        modalSetActive(!modalActive)
+        showSlider(photoId)
     }
     const likeClick = () => {
 
@@ -73,8 +65,6 @@ const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,remove
 
 
     }
-    const history = useHistory();
-
     return(
             <section className="like-button-group">
                 <button
@@ -85,7 +75,6 @@ const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,remove
                     <img src={isLiked === true? defaultImgActive  : defaultImg } />
                 </button>
                <button className="magnifier btn" onClick={handleClickSlider}></button>
-                <Slider active={modalActive} setActive={modalSetActive} photo={BigPhoto} />
             </section>
 
 
@@ -100,7 +89,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     likeClicked,
-    removeLike
+    removeLike,
+    showSlider,
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(LikeBtnGroup);
