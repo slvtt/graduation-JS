@@ -2,27 +2,21 @@ import React, {useState} from 'react';
 import './index.css'
 import {useDispatch, useSelector} from "react-redux";
 
-import {showSlider,hideSlider} from '../../../../redux/actions/slider'
+import {hideSlider} from '../../../../redux/actions/slider'
+import {Avatar} from "@material-ui/core";
 
 const Slider = () => {
     const dispatch = useDispatch();
-    const {isOpened,currentId}= useSelector(({openSlider})=> openSlider)
+    const {isOpened}= useSelector(({openSlider})=> openSlider)
     const arrayPhotos = useSelector(({initialLikes})=> initialLikes.arrPhotos);
-    const [current,setCurrent] = useState(arrayPhotos.findIndex(item => item.id === currentId));
-    const length = arrayPhotos.length
-
-     const currentPhoto = arrayPhotos.filter((photo)=> {
-        return photo.id === currentId
-     })
+    const [current,setCurrent] = useState(0);
+    const length = arrayPhotos.length;
 
     const nextPhoto = () => {
         setCurrent(current === length - 1 ? 0: current + 1)
-        console.log(current)
     }
-
     const prevPhoto = () => {
         setCurrent(current === 0 ? length - 1 : current - 1)
-        console.log(current)
     }
     const handleCloseSlider = () => {
       dispatch(hideSlider())
@@ -30,15 +24,14 @@ const Slider = () => {
     return (
         <div className = {isOpened ? "modal-overlay active":"modal-overlay"} onClick={handleCloseSlider}>
                 <div className="modal-content" onClick={e => e.stopPropagation()} >
-                    <img src={currentPhoto.map((item,index) => {
-                        if(index === current) {
-                            return item.urls.raw
-                        }
-                    })}/>
+                    <div className="user-photo">
+                        <Avatar src={arrayPhotos[current].user.profile_image.small}></Avatar>
+                        <span className="user-nick-name">{arrayPhotos[current].user.username}</span>
+                    </div>
+                    <img src={arrayPhotos[current].urls.raw}/>
                 </div>
 
             <div className="close" onClick={handleCloseSlider}></div>
-
             <div className="slider-btn btn-left"
                  onClick={e => {
                 prevPhoto()

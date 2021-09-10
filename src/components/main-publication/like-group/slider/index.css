@@ -70,9 +70,9 @@
 }
 
 .modal-content{
-    background: #ffffff;
     display: flex;
     align-items: center;
+    flex-direction: column;
 
 }
 
@@ -116,4 +116,10 @@
 
 .close:hover{
     opacity: 1;
+}
+
+.user-photo{
+    display: flex;
+    align-items: start;
+    margin-bottom: 15px;
 }
