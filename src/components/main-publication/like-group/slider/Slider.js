@@ -7,9 +7,9 @@ import {Avatar} from "@material-ui/core";
 
 const Slider = () => {
     const dispatch = useDispatch();
-    const {isOpened}= useSelector(({openSlider})=> openSlider)
+    const {isOpened,currentIndex}= useSelector(({openSlider})=> openSlider);
     const arrayPhotos = useSelector(({initialLikes})=> initialLikes.arrPhotos);
-    const [current,setCurrent] = useState(0);
+    const [current,setCurrent] = useState(currentIndex);
     const length = arrayPhotos.length;
 
     const nextPhoto = () => {

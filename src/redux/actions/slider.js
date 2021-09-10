@@ -1,8 +1,8 @@
-export const showSlider = (id) => {
+export const showSlider = (currentIndex) => {
     return {
         type:'SHOW_SLIDER',
         payload:{
-            id
+            currentIndex
         }
     }
 }

@@ -66,7 +66,7 @@ function Main ({arrLike,photosRes}) {
                     <Grid container spacing={10}>
                         <MainPublication key={nanoid(4)} />
                     </Grid>
-                    <Slider photos={photosRes} setActive={modalSetActive}/>
+                    <Slider />
                 </Container>
             </main>
 
