@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './index.css'
 import {useDispatch, useSelector} from "react-redux";
 
@@ -12,17 +12,17 @@ const Slider = () => {
     const [current,setCurrent] = useState(currentIndex);
     const length = arrayPhotos.length;
 
-    const nextPhoto = () => {
-        setCurrent(current === length - 1 ? 0: current + 1)
-    }
-    const prevPhoto = () => {
-        setCurrent(current === 0 ? length - 1 : current - 1)
-    }
-    const handleCloseSlider = () => {
-      dispatch(hideSlider())
-    }
+     const nextPhoto = () => {
+         setCurrent(current === length - 1 ? 0: current + 1)
+     }
+     const prevPhoto = () => {
+         setCurrent(current === 0 ? length - 1 : current - 1)
+     }
+     const handleCloseSlider = () => {
+       dispatch(hideSlider())
+     }
     return (
-        <div className = {isOpened ? "modal-overlay active":"modal-overlay"} onClick={handleCloseSlider}>
+        <div className = {isOpened ? "modal-overlay active":"modal-overlay"} >
                 <div className="modal-content" onClick={e => e.stopPropagation()} >
                     <div className="user-photo">
                         <Avatar src={arrayPhotos[current].user.profile_image.small}></Avatar>
@@ -33,7 +33,7 @@ const Slider = () => {
 
             <div className="close" onClick={handleCloseSlider}></div>
             <div className="slider-btn btn-left"
-                 onClick={e => {
+                onClick={e => {
                 prevPhoto()
                 e.stopPropagation()
             }}></div>

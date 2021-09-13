@@ -1,5 +1,6 @@
 const initialState = {
     isOpened: false,
+    currentIndex:null
 }
 
 export const openSlider = (state = initialState,action) => {
