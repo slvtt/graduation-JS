@@ -1,13 +1,11 @@
 import { nanoid } from 'nanoid';
-import React, { useState } from 'react';
-import {useHistory} from "react-router-dom";
+import React from 'react';
 import axios from "axios";
 import {connect} from "react-redux";
 
 import defaultImgWhite from '../../../public/img/love_btn.png';
 import defaultImgRed from '../../../public/img/love_btn_active.png';
 import {likeClicked,removeLike} from "../../../redux/actions/likeClick";
-import Slider from "./slider/Slider";
 import {showSlider} from "../../../redux/actions/slider";
 
 const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,removeLike,isLiked,showSlider}) => {

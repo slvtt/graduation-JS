@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import './index.css'
 import {useDispatch, useSelector} from "react-redux";
+import {Avatar} from "@material-ui/core";
 
 import {hideSlider} from '../../../../redux/actions/slider'
-import {Avatar} from "@material-ui/core";
 
 const Slider = () => {
     const dispatch = useDispatch();
@@ -21,6 +21,8 @@ const Slider = () => {
      const handleCloseSlider = () => {
        dispatch(hideSlider())
      }
+
+     console.log(currentIndex)
     return (
         <div className = {isOpened ? "modal-overlay active":"modal-overlay"} >
                 <div className="modal-content" onClick={e => e.stopPropagation()} >

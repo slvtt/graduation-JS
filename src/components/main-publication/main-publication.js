@@ -2,13 +2,10 @@ import React, {useState} from 'react';
 import {Avatar ,Grid,Box } from '@material-ui/core';
 import classNames from 'classnames';
 import {makeStyles} from '@material-ui/core/styles';
-import LikeBtnGroup from './like-group/likeGroup';
-
 import { nanoid } from 'nanoid';
-
 import {connect} from "react-redux";
 
-import Slider from "./like-group/slider/Slider";
+import LikeBtnGroup from './like-group/likeGroup';
 import {hideSlider, showSlider} from "../../redux/actions/slider";
 
 const MainPublication = ({photosRes,showSlider}) =>{
@@ -17,6 +14,7 @@ const MainPublication = ({photosRes,showSlider}) =>{
         <>
             <Grid key={nanoid(10)}  style={{ height: 'auto !important' }} item xs={4} >
                 <div>
+
                     <div className="header-img-block">
                         <Avatar src={item.user.profile_image.small}></Avatar>
                         <Box className={classNames(classes.colorBlack,classes.nickName,classes.nickNameMain)}  component="span">

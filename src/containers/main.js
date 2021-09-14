@@ -11,19 +11,14 @@ import {nanoid} from "nanoid";
 
 const unsplash = createApi({
     accessKey:accessKey,
-
     secret:secret,
-
     callbackUrl: redirect_url,
-    
     fetch:nodeFetch,
-
 });
 
 function Main ({arrLike,photosRes}) {
 
     let photo = null;
-    const [modalActive,modalSetActive] = useState(false)
     const [fetching,setFetching] = useState(true);
     const [currentPhotos, setCurrentPhotos] = useState(10);
 
@@ -45,7 +40,7 @@ function Main ({arrLike,photosRes}) {
                         }
                     })
                         .catch(() => alert('Приложение временно не работает. Зайдите чуть попозже'))
-                        .finally(() => setFetching(false))
+                        .finally(() => {setFetching(false);})
                 }
             }
 
@@ -66,7 +61,10 @@ function Main ({arrLike,photosRes}) {
                     <Grid container spacing={10}>
                         <MainPublication key={nanoid(4)} />
                     </Grid>
-                    <Slider />
+                    {
+                       photosRes ? <Slider/> :''
+                    }
+
                 </Container>
             </main>
 
