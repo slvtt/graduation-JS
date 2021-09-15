@@ -4,10 +4,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {Avatar} from "@material-ui/core";
 
 import {hideSlider} from '../../../../redux/actions/slider'
+import Loading from "../../../loading/Loading";
 
 const Slider = () => {
     const dispatch = useDispatch();
-    const {isOpened,currentIndex}= useSelector(({openSlider})=> openSlider);
+    const {isOpened,currentIndex,isLoaded}= useSelector(({openSlider})=> openSlider);
     const arrayPhotos = useSelector(({initialLikes})=> initialLikes.arrPhotos);
     const [current,setCurrent] = useState(currentIndex);
     const length = arrayPhotos.length;
@@ -27,10 +28,10 @@ const Slider = () => {
         <div className = {isOpened ? "modal-overlay active":"modal-overlay"} >
                 <div className="modal-content" onClick={e => e.stopPropagation()} >
                     <div className="user-photo">
-                        <Avatar src={arrayPhotos[current].user.profile_image.small}></Avatar>
-                        <span className="user-nick-name">{arrayPhotos[current].user.username}</span>
+
                     </div>
-                    <img src={arrayPhotos[current].urls.raw}/>
+                    {isLoaded?<img src={arrayPhotos[current].urls.raw}/>:<Loading/>}
+
                 </div>
 
             <div className="close" onClick={handleCloseSlider}></div>

@@ -1,6 +1,7 @@
 const initialState = {
     isOpened: false,
-    currentIndex:null
+    currentIndex:null,
+    isLoaded:false
 }
 
 export const openSlider = (state = initialState,action) => {
@@ -9,14 +10,15 @@ export const openSlider = (state = initialState,action) => {
             return{
                 ...state,
                 isOpened: true,
-                currentIndex: action.payload.currentIndex
+                currentIndex: action.payload.currentIndex,isLoaded: true
             }
         }
         case 'HIDE_SLIDER' :{
             return {
                 ...state,
                 isOpened: false,
-                currentIndex: null
+                currentIndex: null,
+                isLoaded: true
             }
         }
         default:return state

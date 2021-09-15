@@ -7,10 +7,11 @@ import {connect} from "react-redux";
 
 import LikeBtnGroup from './like-group/likeGroup';
 import {hideSlider, showSlider} from "../../redux/actions/slider";
+import Loading from "../loading/Loading";
 
 const MainPublication = ({photosRes,showSlider}) =>{
     const classes = useStyles();
-    return photosRes.map((item,index) => (
+    return photosRes? photosRes.map((item,index) => (
         <>
             <Grid key={nanoid(10)}  style={{ height: 'auto !important' }} item xs={4} >
                 <div>
@@ -42,7 +43,7 @@ const MainPublication = ({photosRes,showSlider}) =>{
         </>
 
 
-    ))
+    )):Array(photosRes.length).fill(0).map((_)=> <Loading/>)
         
 }
 

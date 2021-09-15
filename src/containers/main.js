@@ -16,7 +16,7 @@ const unsplash = createApi({
     fetch:nodeFetch,
 });
 
-function Main ({arrLike,photosRes}) {
+function Main ({arrLike,photosRes,isLoaded}) {
 
     let photo = null;
     const [fetching,setFetching] = useState(true);
@@ -61,10 +61,7 @@ function Main ({arrLike,photosRes}) {
                     <Grid container spacing={10}>
                         <MainPublication key={nanoid(4)} />
                     </Grid>
-                    {
-                       photosRes ? <Slider/> :''
-                    }
-
+                    <Slider/>
                 </Container>
             </main>
 
@@ -74,7 +71,8 @@ function Main ({arrLike,photosRes}) {
 const mapStateToProps = (state) => {
 
     return {
-        photosRes:state.initialLikes.arrPhotos
+        photosRes:state.initialLikes.arrPhotos,
+        isLoaded:state.initialLikes.isLoaded
     }
 }
 

@@ -1,7 +1,8 @@
 import {ARR_LIKE,LIKE,REMOVE_LIKE} from "../types";
 
 const initialState = {
-    arrPhotos:[]
+    arrPhotos:[],
+    isLoaded:false
 }
 
 export const initialLikes = (state = initialState,action) =>{
@@ -11,7 +12,7 @@ export const initialLikes = (state = initialState,action) =>{
         case ARR_LIKE:
 
             return{
-                ...state,arrPhotos: action.payload
+                ...state,arrPhotos: action.payload,isLoaded: true
             }
 
         case LIKE:
