@@ -10,13 +10,11 @@ export const initialLikes = (state = initialState,action) =>{
     switch (action.type) {
 
         case ARR_LIKE:
-
             return{
                 ...state,arrPhotos: action.payload,isLoaded: true
             }
 
         case LIKE:
-
             const currentLike = action.payload.like;
             const currentId = action.payload.id;
             const isLike = action.payload.isLike;
@@ -35,7 +33,6 @@ export const initialLikes = (state = initialState,action) =>{
             }
 
         case REMOVE_LIKE:
-
             const removedLike = action.payload.like;
             const removeId = action.payload.id;
             const removedFlag = action.payload.isLike

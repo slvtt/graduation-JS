@@ -18,7 +18,7 @@ export const openSlider = (state = initialState,action) => {
                 ...state,
                 isOpened: false,
                 currentIndex: null,
-                isLoaded: true
+                isLoaded: false,
             }
         }
         default:return state

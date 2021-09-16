@@ -23,7 +23,9 @@ const MainPublication = ({photosRes,showSlider}) =>{
                         </Box>
                     </div>
 
-                    <div onClick={()=>showSlider(index)} className="main-img">
+                    <div onClick={()=> {
+                        showSlider(index)
+                    }} className="main-img">
                         <img src={item.urls.regular}/>
                     </div>
 
