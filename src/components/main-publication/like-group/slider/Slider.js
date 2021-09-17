@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import './index.css'
 import {useDispatch, useSelector} from "react-redux";
-import {Avatar} from "@material-ui/core";
 
 import {hideSlider, nextSlide, prevSlide} from '../../../../redux/actions/slider'
-import Loading from "../../../loading/Loading";
 
 const Slider = () => {
     const dispatch = useDispatch();
@@ -23,28 +21,24 @@ const Slider = () => {
        dispatch(hideSlider())
          setCurrent(null)
      }
-
-     console.log(arrayPhotos[current])
     return (
         <div className = {isOpened ? "modal-overlay active":"modal-overlay"} >
                 <div className="modal-content" onClick={e => e.stopPropagation()} >
-                    <div className="user-photo">
-
-                    </div>
+                    <div className="user-photo"></div>
                 <img src={arrayPhotos[currentIndex].urls.raw}/>
                 </div>
 
             <div className="close" onClick={handleCloseSlider}></div>
             <div className="slider-btn btn-left"
                 onClick={e => {
-                    dispatch(prevSlide(current))
                     prevPhoto()
+                    dispatch(prevSlide(current))
                     e.stopPropagation()
             }
                 }></div>
             <div className ="slider-btn btn-right" onClick={e => {
-                dispatch(nextSlide(current))
                 nextPhoto()
+                dispatch(nextSlide(current)),
                 e.stopPropagation()
             }}></div>
 
