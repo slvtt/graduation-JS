@@ -16,7 +16,7 @@ const unsplash = createApi({
     fetch:nodeFetch,
 });
 
-function Main ({arrLike,photosRes,isLoaded}) {
+function Main ({arrLike,photosRes}) {
 
     let photo = null;
     const [fetching,setFetching] = useState(true);
@@ -40,7 +40,7 @@ function Main ({arrLike,photosRes,isLoaded}) {
                         }
                     })
                         .catch(() => alert('Приложение временно не работает. Зайдите чуть попозже'))
-                        .finally(() => {setFetching(false);})
+                        .finally(() => {setFetching(false)})
                 }
             }
 
@@ -61,9 +61,7 @@ function Main ({arrLike,photosRes,isLoaded}) {
                     <Grid container spacing={10}>
                         <MainPublication key={nanoid(4)} />
                     </Grid>
-                    {
-                        photosRes?<Slider/>:''
-                    }
+                    <Slider/>
                 </Container>
             </main>
 

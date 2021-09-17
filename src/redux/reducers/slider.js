@@ -1,6 +1,6 @@
 const initialState = {
     isOpened: false,
-    currentIndex:null,
+    currentIndex:0,
     isLoaded:false,
 }
 
@@ -17,7 +17,7 @@ export const openSlider = (state = initialState,action) => {
             return {
                 ...state,
                 isOpened: false,
-                currentIndex: null,
+                currentIndex: 0,
                 isLoaded: false,
             }
         }
