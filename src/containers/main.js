@@ -61,7 +61,9 @@ function Main ({arrLike,photosRes,isLoaded}) {
                     <Grid container spacing={10}>
                         <MainPublication key={nanoid(4)} />
                     </Grid>
-                    <Slider/>
+                    {
+                        photosRes?<Slider/>:''
+                    }
                 </Container>
             </main>
 

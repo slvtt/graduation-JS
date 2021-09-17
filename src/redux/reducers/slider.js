@@ -1,7 +1,7 @@
 const initialState = {
     isOpened: false,
     currentIndex:null,
-    isLoaded:false
+    isLoaded:false,
 }
 
 export const openSlider = (state = initialState,action) => {
@@ -19,6 +19,21 @@ export const openSlider = (state = initialState,action) => {
                 isOpened: false,
                 currentIndex: null,
                 isLoaded: false,
+            }
+        }
+
+        case 'NEXT_SLIDE':{
+           console.log(action.payload.currentIndex)
+            return {
+               ...state,
+                currentIndex: action.payload.currentIndex
+            }
+        }
+        case 'PREV_SLIDE':{
+            console.log(action.payload.currentIndex)
+            return {
+                ...state,
+                currentIndex: action.payload.currentIndex
             }
         }
         default:return state
