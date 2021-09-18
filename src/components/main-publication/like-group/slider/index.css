@@ -112,6 +112,7 @@
     top:3%;
     opacity: 0.6;
     background: url("../../../../public/img/close.svg") no-repeat center;
+    cursor: pointer;
 }
 
 .close:hover{
