@@ -76,11 +76,6 @@
 
 }
 
-.modal-content img{
-    width: 800px;
-    height: 808px;
-}
-
 .slider-btn{
     position: absolute;
     height: 40px;
@@ -123,4 +118,17 @@
     display: flex;
     align-items: start;
     margin-bottom: 15px;
+    width: 100%;
+}
+
+.avatar-img{
+    height: 24px;
+    width: 28px;
+    border-radius: 10px;
+}
+
+.modal-content_img{
+    width: 800px;
+    height: 661px;
+
 }

@@ -63,7 +63,6 @@ function Main ({arrLike,photosRes}) {
                     {
                         photosRes == false?alert('Фотографии еще не получены, зайдите позже'):<Slider/>
                     }
-
                 </Container>
             </main>
 

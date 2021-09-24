@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import './index.css'
+import './index.css';
 import {useDispatch, useSelector} from "react-redux";
 
 import {hideSlider, nextSlide, prevSlide} from '../../../../redux/actions/slider'
-import {Avatar} from "@material-ui/core";
+import LikeSlider from "../../../LikeSlider/LikeSlider";
 
 const Slider = () => {
     const dispatch = useDispatch();
@@ -24,14 +24,16 @@ const Slider = () => {
        dispatch(hideSlider())
          setCurrent(currentIndex)
      }
+
     return (
         <div className = {isOpened ? "modal-overlay active":"modal-overlay"} onClick={handleCloseSlider}>
-                <div className="modal-content" onClick={e => e.stopPropagation()} >
+               <div className="modal-content" onClick={e => e.stopPropagation()} >
                     <div className="user-photo">
-                        <Avatar src={arrayPhotos[currentIndex].user.profile_image.small}/>
+                        <img className="avatar-img" src={arrayPhotos[currentIndex].user.profile_image.small}/>
                         <a href={arrayPhotos[currentIndex].user.links.html}>{arrayPhotos[currentIndex].user.username}</a>
                     </div>
-                <img src={arrayPhotos[currentIndex].urls.thumb}/>
+                <img className="modal-content_img" src={arrayPhotos[currentIndex].urls.thumb}/>
+                   <LikeSlider />
                 </div>
 
             <div className="close" onClick={handleCloseSlider}></div>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Avatar ,Grid,Box } from '@material-ui/core';
 import classNames from 'classnames';
 import {makeStyles} from '@material-ui/core/styles';
@@ -15,40 +15,32 @@ const MainPublication = ({photosRes,showSlider}) =>{
         <>
             <Grid key={nanoid(10)}  style={{ height: 'auto !important' }} item xs={4} >
                 <div>
-
                     <div className="header-img-block">
                         <Avatar src={item.user.profile_image.small}></Avatar>
                         <Box className={classNames(classes.colorBlack,classes.nickName,classes.nickNameMain)}  component="span">
                             <a href={item.user.links.html}>{item.user.username}</a>
                         </Box>
                     </div>
-
                     <div onClick={()=> {
                         showSlider(index)
                     }} className="main-img">
                         <img src={item.urls.regular}/>
                     </div>
-
                     <div className="main-img_like">
-
                         <span className="like-counter">Нравится:{item.likes}</span>
                         <LikeBtnGroup
-                            BigPhoto={item.urls.raw}
                             photoId = {item.id}
                             userNickName={item.user.username}
                             userIcon={item.user.profile_image.small}
                             isLiked={item.liked_by_user}
+                            photoIndex={index}
                         />
                     </div>
                 </div>
             </Grid>
         </>
-
-
     )):Array(photosRes.length).fill(0).map((_)=> <Loading/>)
-        
 }
-
 
 const useStyles = makeStyles({
     purpleAvatar:{
@@ -71,11 +63,9 @@ const mapStateToProps = (state) => {
         photosRes:state.initialLikes.arrPhotos
     }
 }
-
 const mapDispatchToProps = {
   showSlider,
     hideSlider
 }
-
 
 export default connect (mapStateToProps,mapDispatchToProps)(MainPublication);

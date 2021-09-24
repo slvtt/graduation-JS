@@ -8,7 +8,7 @@ import defaultImgRed from '../../../public/img/love_btn_active.png';
 import {likeClicked,removeLike} from "../../../redux/actions/likeClick";
 import {showSlider} from "../../../redux/actions/slider";
 
-const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,removeLike,isLiked,showSlider}) => {
+const LikeBtnGroup = ({photoIndex,photoId,removeLike,isLiked,showSlider}) => {
 
     const defaultImg = defaultImgWhite;
     const defaultImgActive = defaultImgRed;
@@ -16,12 +16,10 @@ const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,remove
     let token = JSON.parse(localStorage.getItem('token'));
 
     const handleClickSlider = () => {
-        showSlider(photoId)
+        showSlider(photoIndex)
     }
     const likeClick = () => {
-
         if(!isLiked){
-
             if (token) {
                 axios.post(url,null,{
                     headers:{
@@ -32,17 +30,13 @@ const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,remove
                         const id = res.data.photo.id;
                         const likes = res.data.photo.likes;
                         const isLike = res.data.photo.liked_by_user;
-
                         likeClicked(likes,id,isLike);
-
                         console.log(res);
                     })
                     .catch(err=>console.log(err))
-
             } else {
                 alert('Похоже,что вы не авторизовались!')
             }
-
         } else {
             axios.delete(url,{
                 headers:{
@@ -50,18 +44,14 @@ const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,remove
                 }
             })
                 .then(res => {
-
                     const id = res.data.photo.id;
                     const likes = res.data.photo.likes;
                     const isLike = res.data.photo.liked_by_user;
-
                     console.log(res)
                     removeLike(likes,id,isLike)
                 })
                 .catch(err => console.log(err))
         }
-
-
     }
     return(
             <section className="like-button-group">
@@ -74,8 +64,6 @@ const LikeBtnGroup = ({userNickName,userIcon,photoId,BigPhoto,likeClicked,remove
                 </button>
                <button className="magnifier btn" onClick={handleClickSlider}></button>
             </section>
-
-
     )
 }
 
@@ -84,7 +72,6 @@ const mapStateToProps = (state) => {
         photosRes:state.initialLikes.arrPhotos
     }
 }
-
 const mapDispatchToProps = {
     likeClicked,
     removeLike,
