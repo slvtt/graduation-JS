@@ -7,7 +7,6 @@ import axios from "axios";
 import {likeClicked, removeLike} from "../../redux/actions/likeClick";
 
 function LikeSlider({photoId,isLiked,countLikes}) {
-   const defaultImg = defaultImgWhite;
    const defaultImgActive = defaultImgRed;
    const url = `https://api.unsplash.com/photos/${photoId}/like`;
    let token = JSON.parse(localStorage.getItem('token'));
