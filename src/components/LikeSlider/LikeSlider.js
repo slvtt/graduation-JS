@@ -6,7 +6,7 @@ import defaultImgRed from "../../public/img/love_btn_active.png";
 import axios from "axios";
 import {likeClicked, removeLike} from "../../redux/actions/likeClick";
 
-function LikeSlider({photoId,isLiked}) {
+function LikeSlider({photoId,isLiked,countLikes}) {
    const defaultImg = defaultImgWhite;
    const defaultImgActive = defaultImgRed;
    const url = `https://api.unsplash.com/photos/${photoId}/like`;
@@ -50,6 +50,7 @@ function LikeSlider({photoId,isLiked}) {
     return (
         <div className="like-container">
             <button className="btn-modal" onClick={likeClick}><img src={isLiked? defaultImgActive : defaultImgWhite} /></button>
+            <div style={{marginLeft:'15px',fontWeight:'bold'}}>Нравится:{countLikes}</div>
         </div>
 
     );

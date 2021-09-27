@@ -34,6 +34,7 @@ const Slider = () => {
                     </div>
                 <img className="modal-content_img" src={arrayPhotos[currentIndex].urls.thumb}/>
                    <LikeSlider
+                       countLikes={arrayPhotos[currentIndex].likes}
                        photoId={arrayPhotos[currentIndex].id}
                        isLiked={arrayPhotos[currentIndex].liked_by_user}
                    />

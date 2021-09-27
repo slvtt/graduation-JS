@@ -117,8 +117,11 @@
 .user-photo{
     display: flex;
     align-items: start;
-    margin-bottom: 15px;
     width: 100%;
+    background: #ffffff;
+    padding: 20px;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
 }
 
 .avatar-img{
@@ -128,7 +131,6 @@
 }
 
 .modal-content_img{
-    width: 800px;
-    height: 661px;
-
+    width: 578px;
+    height: 664px;
 }

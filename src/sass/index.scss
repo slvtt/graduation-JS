@@ -102,15 +102,20 @@ body{
     padding: 16px;
     align-items: center;
     border:1px solid #efefef;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
 }
 
 .main-img img{
     width: 100%;
+    height: 450px;
 }
 
 .main-img_like{
     border:1px solid #efefef;
     padding: 15px;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
 }
 
 .like-button-group{
