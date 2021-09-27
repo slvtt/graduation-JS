@@ -30,10 +30,13 @@ const Slider = () => {
                <div className="modal-content" onClick={e => e.stopPropagation()} >
                     <div className="user-photo">
                         <img className="avatar-img" src={arrayPhotos[currentIndex].user.profile_image.small}/>
-                        <a href={arrayPhotos[currentIndex].user.links.html}>{arrayPhotos[currentIndex].user.username}</a>
+                        <a className="modal_userNick" href={arrayPhotos[currentIndex].user.links.html}>{arrayPhotos[currentIndex].user.username}</a>
                     </div>
                 <img className="modal-content_img" src={arrayPhotos[currentIndex].urls.thumb}/>
-                   <LikeSlider />
+                   <LikeSlider
+                       photoId={arrayPhotos[currentIndex].id}
+                       isLiked={arrayPhotos[currentIndex].liked_by_user}
+                   />
                 </div>
 
             <div className="close" onClick={handleCloseSlider}></div>
