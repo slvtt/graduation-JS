@@ -122,6 +122,8 @@
     padding: 20px;
     border-top-left-radius: 14px;
     border-top-right-radius: 14px;
+    border: 1px solid #9e9ea2;
+    border-bottom: none;
 }
 
 .avatar-img{

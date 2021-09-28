@@ -101,7 +101,7 @@ body{
     display: flex;
     padding: 16px;
     align-items: center;
-    border:1px solid #efefef;
+    border:3px solid #efefef;
   border-top-left-radius: 14px;
   border-top-right-radius: 14px;
 }
@@ -112,7 +112,7 @@ body{
 }
 
 .main-img_like{
-    border:1px solid #efefef;
+    border:3px solid #efefef;
     padding: 15px;
     border-bottom-left-radius: 14px;
     border-bottom-right-radius: 14px;
@@ -171,4 +171,7 @@ body{
   cursor: pointer;
 }
 
+.auth-btn{
+  border-radius: 10px;
+}
 

@@ -29,6 +29,7 @@ const MainPublication = ({photosRes,showSlider}) =>{
                     <div className="main-img_like">
                         <span className="like-counter">Нравится:{item.likes}</span>
                         <LikeBtnGroup
+                            key={nanoid(4)}
                             photoId = {item.id}
                             userNickName={item.user.username}
                             userIcon={item.user.profile_image.small}

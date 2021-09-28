@@ -41,7 +41,7 @@ function Header({authState}) {
                             {
                                 !authState.isAuth
                                 ? <>
-                                        <Button variant="outlined"><Link to="/auth">Авторизоваться</Link></Button>
+                                        <Button className="auth-btn" variant="outlined"><Link to="/auth">Авторизоваться</Link></Button>
                                     </>
                                 : <h2 className="app-title">
                                     Смотрите и наслаждайтесь красивыми фотографиями c Lilgram!
