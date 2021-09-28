@@ -29,10 +29,10 @@ const Slider = () => {
         <div className = {isOpened ? "modal-overlay active":"modal-overlay"} onClick={handleCloseSlider}>
                <div className="modal-content" onClick={e => e.stopPropagation()} >
                     <div className="user-photo">
-                        <img className="avatar-img" src={arrayPhotos[currentIndex].user.profile_image.small}/>
+                        <img className="avatar-img" src={arrayPhotos[currentIndex].user.profile_image.small} alt="user avatar"/>
                         <a className="modal_userNick" href={arrayPhotos[currentIndex].user.links.html}>{arrayPhotos[currentIndex].user.username}</a>
                     </div>
-                <img className="modal-content_img" src={arrayPhotos[currentIndex].urls.thumb}/>
+                <img className="modal-content_img" src={arrayPhotos[currentIndex].urls.thumb} alt="user publication"/>
                    <LikeSlider
                        countLikes={arrayPhotos[currentIndex].likes}
                        photoId={arrayPhotos[currentIndex].id}

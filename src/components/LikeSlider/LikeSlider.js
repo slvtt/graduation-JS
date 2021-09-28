@@ -1,9 +1,9 @@
 import React from 'react';
 import './index.scss';
+import axios from "axios";
 
 import defaultImgWhite from '../../public/img/love_btn.png';
 import defaultImgRed from "../../public/img/love_btn_active.png";
-import axios from "axios";
 import {likeClicked, removeLike} from "../../redux/actions/likeClick";
 
 function LikeSlider({photoId,isLiked,countLikes}) {

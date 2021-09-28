@@ -1,19 +1,14 @@
 import React, {useEffect, useState} from "react";
-
 import './index.css'
-
-import {accessKey, code, redirect_url, secret} from '../../consts/consts';
-
 import {connect} from "react-redux";
-import {authAction} from '../../redux/actions/authAction';
-import {getToken} from "../../redux/actions/tokenAction";
 import {Button, CircularProgress} from "@material-ui/core";
 import MoodIcon from '@material-ui/icons/Mood';
 
+import {accessKey, code, redirect_url, secret} from '../../consts/consts';
+import {authAction} from '../../redux/actions/authAction';
+import {getToken} from "../../redux/actions/tokenAction";
 const Auth = ({history,authAction,getToken}) =>  {
-
     const [isAuthen,setIsAuthen] = useState(false);
-
     useEffect(()=>{
 
         window.location.replace(`https://unsplash.com/oauth/authorize?client_id=${accessKey}&redirect_uri=${redirect_url}&response_type=code&scope=publi
@@ -61,9 +56,7 @@ c+read_user+write_likes`)
                                     </Button>
                                 </>
                         }
-
                     </div>
-
                 </div>
             </div>
         </div>

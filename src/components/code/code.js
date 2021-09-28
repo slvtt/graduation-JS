@@ -1,21 +1,16 @@
 import React, {useEffect, useState} from "react";
-
 import './index.css'
-
-import {accessKey, redirect_url, secret} from '../../consts/consts';
-
 import {connect} from "react-redux";
-import {authAction} from '../../redux/actions/authAction';
-import {getToken} from "../../redux/actions/tokenAction";
 import {Button, CircularProgress} from "@material-ui/core";
 import MoodIcon from '@material-ui/icons/Mood';
 
+import {authAction} from '../../redux/actions/authAction';
+import {getToken} from "../../redux/actions/tokenAction";
+import {accessKey, redirect_url, secret} from '../../consts/consts';
+
 const Coden = ({history, authAction, getToken}) => {
-
     const [isAuthen, setIsAuthen] = useState(false);
-
     let code = null;
-
     useEffect(() => {
         code = window.location.search.substr(6)
         console.log(code);

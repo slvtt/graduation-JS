@@ -1,28 +1,19 @@
 import React from 'react';
-
 import {Redirect} from "react-router";
-
 import {connect} from "react-redux";
-
-//import material UI
 import {AppBar, Avatar, Box, Button, Container, Toolbar} from '@material-ui/core';
-
 import {makeStyles} from '@material-ui/core/styles';
-
 import classNames from "classnames";
-
-import Logo from "../public/img/Lilgram.png";
-
-import Auth from '../components/auth/Auth'
-
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Link, useHistory
 } from "react-router-dom";
-import Coden from "../components/code/code";
 
+import Logo from "../public/img/Lilgram.png";
+import Auth from '../components/auth/Auth'
+import Coden from "../components/code/code";
 
 function Header({authState}) {
     const classes = useStyles();
@@ -34,10 +25,9 @@ function Header({authState}) {
                 <Container >
                     <Toolbar className={classes.spaceBetween}>
                         <div >
-                            <img  src = {Logo}/>
+                            <img src= {Logo} alt="logo"/>
                         </div>
                         <Box className={classes.nickAvatar}>
-
                             {
                                 !authState.isAuth
                                 ? <>
@@ -47,14 +37,11 @@ function Header({authState}) {
                                     Смотрите и наслаждайтесь красивыми фотографиями c Lilgram!
                                     </h2>
                             }
-
-
                         </Box>
                     </Toolbar>
                 </Container>
             </AppBar>
             <Switch>
-
                 <Route exact path = "/auth" >
                     <Auth
                         history={history}

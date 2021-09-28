@@ -18,7 +18,6 @@ const unsplash = createApi({
 });
 
 function Main ({arrLike,photosRes}) {
-
     let photo = null;
     const [fetching,setFetching] = useState(true);
     const [currentPhotos, setCurrentPhotos] = useState(10);
@@ -29,7 +28,6 @@ function Main ({arrLike,photosRes}) {
             setFetching(true)
         }
     }
-
     useEffect(()=>{
 
         if (fetching) {
@@ -46,7 +44,6 @@ function Main ({arrLike,photosRes}) {
             }
 
     },[fetching])
-
     useEffect(()=>{
         document.addEventListener('scroll',scrollHandler)
         return function (){
@@ -65,12 +62,10 @@ function Main ({arrLike,photosRes}) {
                     }
                 </Container>
             </main>
-
     )
 }
 
 const mapStateToProps = (state) => {
-
     return {
         photosRes:state.initialLikes.arrPhotos,
         isLoaded:state.initialLikes.isLoaded

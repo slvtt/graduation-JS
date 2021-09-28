@@ -60,7 +60,7 @@ const LikeBtnGroup = ({photoIndex,photoId,removeLike,isLiked,showSlider}) => {
                     className=" btn"
                     onClick = {likeClick}
                 >
-                    <img src={isLiked === true? defaultImgActive  : defaultImg } />
+                    <img src={isLiked === true? defaultImgActive  : defaultImg } alt="likeBtn" />
                 </button>
                <button className="magnifier btn" onClick={handleClickSlider}></button>
             </section>
