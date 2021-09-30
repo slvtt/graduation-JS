@@ -11,6 +11,10 @@ import Loading from "../loading/Loading";
 
 const MainPublication = ({photosRes,showSlider}) =>{
     const classes = useStyles();
+
+    if (photosRes === 0 ) {
+        return <Loading/>
+    }
     return photosRes? photosRes.map((item,index) => (
         <>
 

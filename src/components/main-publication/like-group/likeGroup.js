@@ -8,11 +8,12 @@ import defaultImgRed from '../../../public/img/love_btn_active.png';
 import {likeClicked,removeLike} from "../../../redux/actions/likeClick";
 import {showSlider} from "../../../redux/actions/slider";
 
-const LikeBtnGroup = ({photoIndex,photoId,removeLike,isLiked,showSlider,token}) => {
+const LikeBtnGroup = ({photoIndex,photoId,removeLike,isLiked,showSlider,likeClicked}) => {
 
     const defaultImg = defaultImgWhite;
     const defaultImgActive = defaultImgRed;
     const url = `https://api.unsplash.com/photos/${photoId}/like`;
+    let token = JSON.parse(localStorage.getItem('token'));
 
     const handleClickSlider = () => {
         showSlider(photoIndex)
