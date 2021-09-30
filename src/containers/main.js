@@ -29,7 +29,6 @@ function Main ({arrLike,photosRes}) {
         }
     }
     useEffect(()=>{
-
         if (fetching) {
                 if (currentPhotos < 30){
                     photo = unsplash.photos.getRandom({count:currentPhotos}).then(result => {
