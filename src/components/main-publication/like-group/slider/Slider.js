@@ -5,7 +5,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {hideSlider, nextSlide, prevSlide} from '../../../../redux/actions/slider'
 import LikeSlider from "../../../LikeSlider/LikeSlider";
 
-const Slider = () => {
+const Slider = ({showSlider}) => {
+
     const dispatch = useDispatch();
     const { isOpened,currentIndex }= useSelector(({openSlider})=> openSlider);
     const arrayPhotos = useSelector(({initialLikes})=> initialLikes.arrPhotos);
@@ -24,7 +25,9 @@ const Slider = () => {
        dispatch(hideSlider())
          setCurrent(currentIndex)
      }
-
+    if (!showSlider){
+        return null
+    }
     return (
         <div className = {isOpened ? "modal-overlay active":"modal-overlay"} onClick={handleCloseSlider}>
                <div className="modal-content" onClick={e => e.stopPropagation()} >

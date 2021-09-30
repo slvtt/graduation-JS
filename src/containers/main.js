@@ -17,7 +17,7 @@ const unsplash = createApi({
     fetch:nodeFetch,
 });
 
-function Main ({arrLike,photosRes}) {
+function Main ({arrLike,photosRes,isLoaded}) {
     let photo = null;
     const [fetching,setFetching] = useState(true);
     const [currentPhotos, setCurrentPhotos] = useState(10);
@@ -34,11 +34,11 @@ function Main ({arrLike,photosRes}) {
                     photo = unsplash.photos.getRandom({count:currentPhotos}).then(result => {
                         if (result) {
                             arrLike([...photosRes, ...result.response])
-                            setCurrentPhotos(prevState => prevState + 1)
+                            setCurrentPhotos(prevState => prevState + 1);
                         }
                     })
                         .catch(() => alert('Приложение временно не работает. Зайдите чуть попозже'))
-                        .finally(() => {setFetching(false)})
+                        .finally(() => {setFetching(false);})
                 }
             }
 
@@ -56,12 +56,7 @@ function Main ({arrLike,photosRes}) {
                     <Grid container spacing={10}>
                         <MainPublication key={nanoid(4)} />
                     </Grid>
-                    {
-                        photosRes? alert('Фотографии еще не получены, зайдите позже'):<Slider/>
-                    }
-                   {/* {
-                        photosRes == false?
-                    }*/}
+                    <Slider showSlider = {isLoaded}/>
                 </Container>
             </main>
     )
