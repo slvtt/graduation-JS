@@ -56,8 +56,11 @@ function Main ({arrLike,photosRes}) {
                     <Grid container spacing={10}>
                         <MainPublication key={nanoid(4)} />
                     </Grid>
+                    {
+                        photosRes? alert('Фотографии еще не получены, зайдите позже'):<Slider/>
+                    }
                    {/* {
-                        photosRes == false?alert('Фотографии еще не получены, зайдите позже'):<Slider/>
+                        photosRes == false?
                     }*/}
                 </Container>
             </main>
