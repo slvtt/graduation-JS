@@ -13,6 +13,7 @@ const MainPublication = ({photosRes,showSlider}) =>{
     const classes = useStyles();
     return photosRes? photosRes.map((item,index) => (
         <>
+
             <Grid key={nanoid(10)}  style={{ height: 'auto !important' }} item xs={4} >
                 <div>
                     <div className="header-img-block">
