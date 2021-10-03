@@ -1,11 +1,10 @@
 import { nanoid } from 'nanoid';
 import React from 'react';
-import axios from "axios";
 import {connect} from "react-redux";
 
 import defaultImgWhite from '../../../public/img/love_btn.png';
 import defaultImgRed from '../../../public/img/love_btn_active.png';
-import {likeClicked, likeClickPost, removeLike, removeLikeDelete} from "../../../redux/actions/likeClick";
+import { likeClickPost, removeLikeDelete} from "../../../redux/actions/likeClick";
 import {showSlider} from "../../../redux/actions/slider";
 
 const LikeBtnGroup = ({photoIndex,photoId,isLiked,showSlider,removeLikeDelete,likeClickPost}) => {
@@ -20,7 +19,7 @@ const LikeBtnGroup = ({photoIndex,photoId,isLiked,showSlider,removeLikeDelete,li
     }
     const likeClick = () => {
         if(!isLiked){
-            if (token) {
+            if (!token) {
                 likeClickPost(token,photoId)
             } else {
                 alert('Похоже,что вы не авторизовались!')
@@ -50,8 +49,6 @@ const mapStateToProps = (state) => {
     }
 }
 const mapDispatchToProps = {
-    likeClicked,
-    removeLike,
     showSlider,
     removeLikeDelete,
     likeClickPost,

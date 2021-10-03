@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container,Grid } from '@material-ui/core';
+import { Container,Grid, } from '@material-ui/core';
 import nodeFetch from 'node-fetch';
 import { createApi } from 'unsplash-js';
 import {connect} from "react-redux";
@@ -9,6 +9,8 @@ import {accessKey,redirect_url,secret} from '../consts/consts'
 import MainPublication from '../components/main-publication/main-publication';
 import {arrLike} from "../redux/actions/arrLikeAction";
 import Slider from "../components/main-publication/like-group/slider/Slider";
+import Alert from "../components/Alert";
+import {likeErrorLeave} from "../redux/actions/likeClick";
 
 const unsplash = createApi({
     accessKey:accessKey,
@@ -17,7 +19,7 @@ const unsplash = createApi({
     fetch:nodeFetch,
 });
 
-function Main ({arrLike,photosRes,isLoaded}) {
+function Main ({arrLike,photosRes,isLoaded,hasError}) {
     let photo = null;
     const [fetching,setFetching] = useState(true);
     const [currentPhotos, setCurrentPhotos] = useState(10);
@@ -53,6 +55,7 @@ function Main ({arrLike,photosRes,isLoaded}) {
     return(
             <main>
                 <Container style={{marginTop:'40px'}} >
+                    <Alert hide={likeErrorLeave} hasError={hasError}/>
                     <Grid container spacing={10}>
                         <MainPublication key={nanoid(4)} />
                     </Grid>
@@ -65,12 +68,14 @@ function Main ({arrLike,photosRes,isLoaded}) {
 const mapStateToProps = (state) => {
     return {
         photosRes:state.initialLikes.arrPhotos,
+        hasError:state.initialLikes.error,
         isLoaded:state.initialLikes.isLoaded
     }
 }
 
 const mapDispatchToProps ={
-    arrLike
+    arrLike,
+    likeErrorLeave
 }
 
 export default connect (mapStateToProps,mapDispatchToProps)(Main);

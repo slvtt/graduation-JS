@@ -4,48 +4,23 @@ import axios from "axios";
 
 import defaultImgWhite from '../../public/img/love_btn.png';
 import defaultImgRed from "../../public/img/love_btn_active.png";
-import {likeClicked, removeLike} from "../../redux/actions/likeClick";
+import {likeClickPost,removeLikeDelete} from "../../redux/actions/likeClick";
 import {useDispatch} from "react-redux";
 
 function LikeSlider({photoId,isLiked,countLikes}) {
     const dispatch = useDispatch()
-   const defaultImgActive = defaultImgRed;
-   const url = `https://api.unsplash.com/photos/${photoId}/like`;
-   let token = JSON.parse(localStorage.getItem('token'));
+    const defaultImgActive = defaultImgRed;
+    let token = JSON.parse(localStorage.getItem('token'));
 
     const likeClick = () => {
         if(!isLiked){
             if (token) {
-                axios.post(url,null,{
-                    headers:{
-                        Authorization:`Bearer ${token}`
-                    }
-                })
-                    .then(res =>{
-                        const id = res.data.photo.id;
-                        const likes = res.data.photo.likes;
-                        const isLike = res.data.photo.liked_by_user;
-                        dispatch(likeClicked(likes,id,isLike))
-                        console.log(res);
-                    })
-                    .catch(err=>console.log(err))
+               dispatch(likeClickPost(token,photoId))
             } else {
                 alert('Похоже,что вы не авторизовались!')
             }
         } else {
-            axios.delete(url,{
-                headers:{
-                    Authorization:`Bearer ${token}`
-                }
-            })
-                .then(res => {
-                    const id = res.data.photo.id;
-                    const likes = res.data.photo.likes;
-                    const isLike = res.data.photo.liked_by_user;
-                    console.log(res)
-                    dispatch(removeLike(likes,id,isLike))
-                })
-                .catch(err => console.log(err))
+           dispatch(removeLikeDelete(token,photoId))
         }
     }
     return (

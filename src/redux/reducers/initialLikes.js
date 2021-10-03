@@ -1,8 +1,9 @@
-import {ARR_LIKE,LIKE,REMOVE_LIKE} from "../types";
+import {ARR_LIKE, LIKE, LIKE_ERROR, REMOVE_LIKE} from "../types";
 
 const initialState = {
     arrPhotos:[],
-    isLoaded:false
+    isLoaded:false,
+    error:false
 }
 
 export const initialLikes = (state = initialState,action) =>{
@@ -29,7 +30,7 @@ export const initialLikes = (state = initialState,action) =>{
             })
 
             return {
-                ...state,arrPhotos: changedArr
+                ...state,arrPhotos: changedArr,error: false
             }
 
         case REMOVE_LIKE:
@@ -50,8 +51,15 @@ export const initialLikes = (state = initialState,action) =>{
             })
 
             return {
-                ...state,arrPhotos: removedLikeArr
+                ...state,arrPhotos: removedLikeArr,error: false
             }
+
+        case LIKE_ERROR:{
+            return {...state,error: true}
+        }
+        case 'LEAVE':{
+            return {...state,error: false}
+        }
 
         default:
             return state
