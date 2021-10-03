@@ -4,10 +4,10 @@ import {connect} from "react-redux";
 
 import defaultImgWhite from '../../../public/img/love_btn.png';
 import defaultImgRed from '../../../public/img/love_btn_active.png';
-import { likeClickPost, removeLikeDelete} from "../../../redux/actions/likeClick";
+import {likeClickPost, removeLikeDelete, showError} from "../../../redux/actions/likeClick";
 import {showSlider} from "../../../redux/actions/slider";
 
-const LikeBtnGroup = ({photoIndex,photoId,isLiked,showSlider,removeLikeDelete,likeClickPost}) => {
+const LikeBtnGroup = ({photoIndex,photoId,isLiked,showSlider,removeLikeDelete,likeClickPost,showError}) => {
 
     const defaultImg = defaultImgWhite;
     const defaultImgActive = defaultImgRed;
@@ -21,6 +21,8 @@ const LikeBtnGroup = ({photoIndex,photoId,isLiked,showSlider,removeLikeDelete,li
         if(!isLiked){
             if (token) {
                 likeClickPost(token,photoId)
+            }else {
+                showError()
             }
         } else {
             removeLikeDelete(token,photoId)
@@ -50,6 +52,7 @@ const mapDispatchToProps = {
     showSlider,
     removeLikeDelete,
     likeClickPost,
+    showError
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(LikeBtnGroup);

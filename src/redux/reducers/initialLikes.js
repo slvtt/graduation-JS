@@ -60,6 +60,9 @@ export const initialLikes = (state = initialState,action) =>{
         case 'LEAVE':{
             return {...state,error: false}
         }
+        case 'SHOW_ERROR':{
+            return {...state,error: true}
+        }
 
         default:
             return state
