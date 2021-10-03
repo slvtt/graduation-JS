@@ -5,10 +5,10 @@ import {connect} from "react-redux";
 
 import defaultImgWhite from '../../../public/img/love_btn.png';
 import defaultImgRed from '../../../public/img/love_btn_active.png';
-import {likeClicked,removeLike} from "../../../redux/actions/likeClick";
+import {likeClicked, likeClickPost, removeLike, removeLikeDelete} from "../../../redux/actions/likeClick";
 import {showSlider} from "../../../redux/actions/slider";
 
-const LikeBtnGroup = ({photoIndex,photoId,removeLike,isLiked,showSlider,likeClicked}) => {
+const LikeBtnGroup = ({photoIndex,photoId,isLiked,showSlider,removeLikeDelete,likeClickPost}) => {
 
     const defaultImg = defaultImgWhite;
     const defaultImgActive = defaultImgRed;
@@ -21,36 +21,12 @@ const LikeBtnGroup = ({photoIndex,photoId,removeLike,isLiked,showSlider,likeClic
     const likeClick = () => {
         if(!isLiked){
             if (token) {
-                axios.post(url,null,{
-                    headers:{
-                        Authorization:`Bearer ${token}`
-                    }
-                })
-                    .then(res =>{
-                        const id = res.data.photo.id;
-                        const likes = res.data.photo.likes;
-                        const isLike = res.data.photo.liked_by_user;
-                        likeClicked(likes,id,isLike);
-                        console.log(res);
-                    })
-                    .catch(err=>console.log(err))
+                likeClickPost(token,photoId)
             } else {
                 alert('Похоже,что вы не авторизовались!')
             }
         } else {
-            axios.delete(url,{
-                headers:{
-                    Authorization:`Bearer ${token}`
-                }
-            })
-                .then(res => {
-                    const id = res.data.photo.id;
-                    const likes = res.data.photo.likes;
-                    const isLike = res.data.photo.liked_by_user;
-                    console.log(res)
-                    removeLike(likes,id,isLike)
-                })
-                .catch(err => console.log(err))
+            removeLikeDelete(token,photoId)
         }
     }
     return(
@@ -77,6 +53,8 @@ const mapDispatchToProps = {
     likeClicked,
     removeLike,
     showSlider,
+    removeLikeDelete,
+    likeClickPost,
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(LikeBtnGroup);
