@@ -74,7 +74,7 @@ export const leave = () => {
 }
 export const likeErrorLeave = () => {
     return dispatch => {
-        setTimeout(()=> dispatch(leave()),250)
+        setTimeout(()=> dispatch(leave()),210)
     }
 }
 

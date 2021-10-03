@@ -55,7 +55,7 @@ function Main ({arrLike,photosRes,isLoaded,hasError}) {
     return(
             <main>
                 <Container style={{marginTop:'40px'}} >
-                    <Alert hide={likeErrorLeave} hasError={hasError}/>
+                    <Alert hasError={hasError}/>
                     <Grid container spacing={10}>
                         <MainPublication key={nanoid(4)} />
                     </Grid>
@@ -75,7 +75,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps ={
     arrLike,
-    likeErrorLeave
 }
 
 export default connect (mapStateToProps,mapDispatchToProps)(Main);

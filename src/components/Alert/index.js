@@ -2,9 +2,9 @@ import React from 'react';
 import './index.scss'
 import {useDispatch} from "react-redux";
 import {likeErrorLeave} from "../../redux/actions/likeClick";
-function Alert({hasError,hide}) {
+function Alert({hasError}) {
     const dispatch = useDispatch()
-    setTimeout(()=>dispatch(likeErrorLeave()) ,1500)
+    setTimeout(()=>dispatch(likeErrorLeave()) ,5000)
     if (!hasError) {
         return null
     }
