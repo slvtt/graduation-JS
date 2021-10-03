@@ -19,10 +19,8 @@ const LikeBtnGroup = ({photoIndex,photoId,isLiked,showSlider,removeLikeDelete,li
     }
     const likeClick = () => {
         if(!isLiked){
-            if (!token) {
+            if (token) {
                 likeClickPost(token,photoId)
-            } else {
-                alert('Похоже,что вы не авторизовались!')
             }
         } else {
             removeLikeDelete(token,photoId)
