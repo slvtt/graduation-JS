@@ -17,7 +17,6 @@ const MainPublication = ({photosRes,showSlider}) =>{
     }
     return photosRes? photosRes.map((item,index) => (
         <React.Fragment key={nanoid(4)}>
-
             <Grid key={nanoid(10)}  style={{ height: 'auto !important' }} item xs={4} >
                 <div>
                     <div className="header-img-block">
