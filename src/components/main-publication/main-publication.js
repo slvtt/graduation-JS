@@ -16,7 +16,7 @@ const MainPublication = ({photosRes,showSlider}) =>{
         return <Loading/>
     }
     return photosRes? photosRes.map((item,index) => (
-        <>
+        <React.Fragment key={nanoid(4)}>
 
             <Grid key={nanoid(10)}  style={{ height: 'auto !important' }} item xs={4} >
                 <div>
@@ -44,7 +44,7 @@ const MainPublication = ({photosRes,showSlider}) =>{
                     </div>
                 </div>
             </Grid>
-        </>
+        </React.Fragment>
     )):Array(photosRes.length).fill(0).map((_)=> <Loading/>)
 }
 
