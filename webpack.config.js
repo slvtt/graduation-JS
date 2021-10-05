@@ -93,7 +93,8 @@ let conf = {
         port: 3000,
         open: true,
         writeToDisk: false,
-        historyApiFallback:true
+        historyApiFallback:true,
+        disableHotCheck:true
     },
     experiments: {
         topLevelAwait: true,
