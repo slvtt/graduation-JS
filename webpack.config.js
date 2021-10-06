@@ -94,7 +94,7 @@ let conf = {
         open: true,
         writeToDisk: false,
         historyApiFallback:true,
-        disableHotCheck:true
+        disableHostCheck: true
     },
     experiments: {
         topLevelAwait: true,
