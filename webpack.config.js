@@ -88,9 +88,13 @@ let conf = {
         ]
     },
     devServer: {
+        headers : {
+            'Access-Control-Allow-Origin' : '*' ,
+            'Access-Control-Allow-Headers' : 'Origin, X-Requested-With, Content-Type, Accept'
+        },
         contentBase: './dist',
         hot: true,
-        port: 3000,
+        port:process.env.PORT || 3000,
         open: true,
         writeToDisk: false,
         historyApiFallback:true,
