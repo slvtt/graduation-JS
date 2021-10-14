@@ -13,7 +13,7 @@ const filename = ext => isDev ?
 
 let conf = {
     entry: {
-        main: ['webpack-dev-server/client?http://localhost:3000/','@babel/polyfill', './index.js']
+        main: ['@babel/polyfill', './index.js']
     },
     output: {
         filename: `./js/${filename('js')}`,
@@ -33,6 +33,9 @@ let conf = {
         }),
         new CleanWebpackPlugin(),
     ],
+    performance: {
+        hints: false
+    },
     module: {
         rules: [
             {
