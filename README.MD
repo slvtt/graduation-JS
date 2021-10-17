@@ -5,4 +5,4 @@
 3. `npm run build` - сборка приложения на production
 4. `npm start` - не работает, т.к. приложение выложено на Heroku и эта команда нужна для него
 
-https://lilgram.herokuapp.com/ - Ссылка на приложение.
+https://lilgram-ecbde.web.app/ - Ссылка на приложение.
